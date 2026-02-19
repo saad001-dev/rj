@@ -1,0 +1,5102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthHub Pro - Your Complete Health Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+        overflow-x: hidden;
+      } /* Modal backdrop */
+    .user,
+.pass {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  color: #fff;
+  background-color: #374151;
+  border: 1px solid #555;
+  border-radius: 6px;
+  outline: none;
+}
+
+.user::placeholder,
+.pass::placeholder {
+  color: #aaa;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85);
+}
+
+.modal-content {
+  background-color: #1f2937;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: white;
+}
+
+.submit-btn,
+.google-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #10b981;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.google-btn {
+  background-color: white;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.google-btn:hover {
+  background-color: #f3f3f3;
+}
+
+.submit-btn:hover {
+  background-color: #059669;
+}
+
+.error-message {
+  color: #f87171;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sign-up {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+}
+.google-btn:hover{
+  background-color: blue;
+  color: white;
+}
+
+      /* Responsive styles */
+      @media (max-width: 600px) {
+        .modal-content {
+          margin-top: 50px;
+          margin-right: 30px; /* Reduce margin on smaller screens */
+          padding: 20px; /* Reduce padding on smaller screens */
+        }
+
+        .close {
+          font-size: 18px; /* Smaller close button on mobile */
+        }
+        .modal {
+          margin-left: -20px;
+          width: auto;
+        }
+
+        input {
+          margin-top: 15px; /* Adjust margin for inputs */
+        }
+
+        .submit-btn {
+          margin-top: 15px; /* Adjust margin for submit button */
+        }
+      }
+
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/62f4c4a8-2893-414a-98c3-ea6b2750db3f.png")
+            center/cover no-repeat;
+        height: 90vh;
+      }
+
+      .input-glow:focus {
+        box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+      }
+
+      .card {
+        background: #1a1a1a;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-top: 3px solid #4ade80;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .health-indicator {
+        height: 8px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #4ade80, #3b82f6);
+      }
+
+      .symptom-item {
+        transition: all 0.3s;
+      }
+
+      .symptom-item:hover {
+        background-color: #2a2a2a;
+        transform: scale(1.02);
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+        @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+.text-xl font-bold{
+  animation: bounce 2s ease-in-out infinite;
+
+}
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-heartbeat text-2xl text-green-400"></i>
+          <span class="text-xl font-bold"
+            >Health<span class="text-green-400">Hub</span>Pro</span
+          >
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#" class="hover:text-green-400 transition">Home</a>
+          <a href="#services" class="hover:text-green-400 transition"
+            >Services</a
+          >
+          <a href="#symptoms" class="hover:text-green-400 transition"
+            >Symptoms Checker</a
+          >
+          <a href="#articles" class="hover:text-green-400 transition"
+            >Articles</a
+          >
+          <a href="#contact" class="hover:text-green-400 transition">Contact</a>
+        </div>
+     <!-- Sign In Button -->
+<div class="flex items-center space-x-4">
+  <button
+    class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md shadow transition"
+    onclick="openModal()"
+  >
+    Sign In
+  </button>
+</div>
+
+<!-- Login Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 style="text-align:center; color:white; margin-bottom:20px;">Sign In</h2>
+
+    <input type="email" class="user" placeholder="Email" />
+    <input type="password" class="pass" placeholder="Password" />
+    <p class="error-message" style="display:none;"></p>
+
+    <button class="submit-btn">Log In</button>
+
+    <div class="social-login">
+      <p style="color:#ccc;">or</p>
+     <button class="google-btn">
+  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+       alt="Google" 
+       style="width:18px; height:18px; vertical-align:middle; margin-right:10px;" />
+  Log in with Google
+</button>
+
+    </div>
+
+    <p class="sign-up">
+      No account?
+      <a href="#" style="color:#4ade80;">Sign up</a>
+    </p>
+  </div>
+</div>
+
+      <button class="md:hidden text-xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-section flex items-center justify-center text-center px-4"
+    >
+      <div class="max-w-4xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Your Health. <span class="text-green-400">Our Priority.</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-300">
+          Access reliable health information, symptom checking, and wellness
+          tips from trusted medical professionals.
+        </p>
+        <!-- Search Form Section -->
+        <!-- HTML Section: Disease Details -->
+        <div
+          id="diseaseDetailSection"
+          class="hidden p-4 bg-gray-800 text-white rounded mt-4"
+        >
+          <h2 id="diseaseTitle" class="text-xl font-bold mb-2"></h2>
+          <p id="diseaseDescription" class="mb-2"></p>
+          <ul id="diseaseSolutions" class="list-disc ml-5 text-green-400"></ul>
+          <button
+            onclick="hideDiseaseDetail()"
+            class="mt-4 px-4 py-2 bg-red-600 rounded"
+          >
+            
+  <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+
+        <div id="resultBox" class="mt-4"></div>
+        <div class="relative max-w-xl mx-auto mt-8">
+          <form class="search-form" onsubmit="handleSearch(event)">
+            <div class="relative max-w-xl mx-auto">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="      Search for symptoms"
+                class="w-full py-4 px-6 rounded-full bg-gray-800 text-white border border-gray-700 focus:outline-none input-glow"
+              />
+              <button
+                type="submit"
+                class="z-10 absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          <div id="resultBox" class="text-white mt-6 text-lg"></div>
+
+          <!-- Result Box -->
+          <div id="resultBox" class="text-white mt-6 text-lg"></div>
+        </div>
+
+        <p class="mt-6 text-gray-400">
+          Trusted by over 2 million users worldwide
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="p-6">
+            <div class="text-4xl font-bold text-green-400 mb-2">10,000+</div>
+            <div class="text-gray-400">Medical Articles</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-blue-400 mb-2">500+</div>
+            <div class="text-gray-400">Healthcare Professionals</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-purple-400 mb-2">2M+</div>
+            <div class="text-gray-400">Monthly Users</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-yellow-400 mb-2">24/7</div>
+            <div class="text-gray-400">Support Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Our <span class="text-green-400">Services</span>
+          </h2>
+          <p class="max-w-2xl mx-auto text-gray-400">
+            Comprehensive healthcare services at your fingertips
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Service Card 1 -->
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-green-900 rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-stethoscope text-2xl text-green-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Symptom Checker</h3>
+            <p class="text-gray-400 mb-4">
+              Input your symptoms and receive possible conditions from our
+              AI-powered diagnostic tool.
+            </p>
+            <a
+              href="#"
+              class="text-green-400 hover:text-green-300 flex items-center transition"
+            >
+              Learn More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-book-medical text-2xl text-blue-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Health Library</h3>
+            <p class="text-gray-400 mb-4">
+              Access our comprehensive database of medical conditions,
+              treatments, and wellness information.
+            </p>
+            <a
+              href="#"
+              class="text-blue-400 hover:text-blue-300 flex items-center transition"
+            >
+              Learn More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-purple-900 rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-user-md text-2xl text-purple-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Doctor Consultation</h3>
+            <p class="text-gray-400 mb-4">
+              Connect instantly with certified doctors for virtual consultations
+              and medical advice.
+            </p>
+            <a
+              href="#"
+              class="text-purple-400 hover:text-purple-300 flex items-center transition"
+            >
+              Learn More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Symptom Checker Section -->
+    <section id="symptoms" class="py-20 bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Symptom <span class="text-green-400">Checker</span>
+          </h2>
+          <p class="max-w-2xl mx-auto text-gray-400">
+            Select your symptoms to get personalized health information
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Common Symptoms</h3>
+            <div id="symptomSection" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"  onclick="showDiseaseDetail('fever')"
+              >
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8aac89e8-881c-48be-b955-f62c7b286e92.png"
+                  alt="Fever illustration with thermometer showing high temperature"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Fever</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('cough')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51695929-f2f2-4443-927a-48404c8e3e61.png"
+                  alt="Cough illustration with person covering mouth while coughing"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Cough</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('headache')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/218b1339-4f6e-40ab-9afc-a4415f95c60d.png"
+                  alt="Headache illustration with person holding head in pain"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Headache</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('nausea')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e86ddc3-6b13-483e-8911-d6152cabde43.png"
+                  alt="Nausea illustration with sick person holding stomach"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Nausea</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Body Parts</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('head/neck')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a4e5c0c5-4dad-462a-a9b3-5f6b8a8da7ab.png"
+                  alt="Head and neck anatomy illustration highlighting those areas"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Head/Neck</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('chest')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/af5999aa-9466-4469-855a-4fc898fe64ca.png"
+                  alt="Chest and lungs anatomy illustration showing respiratory system"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Chest</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('abdomen')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/184e5558-901d-443a-b001-642b959e3329.png"
+                  alt="Abdomen anatomy illustration highlighting digestive organs"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Abdomen</div>
+              </div>
+              <div
+                class="symptom-item bg-gray-800 p-3 rounded-lg text-center cursor-pointer hover:shadow-lg transition"
+              onclick="showDiseaseDetail('limbs')">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/158570fc-c8e1-4144-bb90-7ef49901db26.png"
+                  alt="Legs and feet anatomy illustration showing musculoskeletal structure"
+                  class="w-14 h-14 mx-auto mb-2"
+                />
+                <div>Limbs</div>
+              </div>
+            </div>
+          </div>
+<div id="diseaseDetailSection" class="hidden bg-gray-900 p-4 rounded mt-6">
+  <h2 id="diseaseTitle" class="text-2xl font-bold mb-2 text-white"></h2>
+  <p id="diseaseDescription" class="text-white mb-2"></p>
+  <ul id="diseaseSolutions" class="list-disc list-inside text-green-300"></ul>
+</div>
+        <div  class="text-center mt-12">
+
+</div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Health <span class="text-green-400">Articles</span>
+          </h2>
+          <p class="max-w-2xl mx-auto text-gray-400">
+            Latest medical research and wellness advice
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Article 1 -->
+          <div class="card overflow-hidden rounded-lg">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fd66881e-169d-405e-99ba-6819142d4c59.png"
+                alt="Healthy heart with glowing pulse lines and medical diagram overlay"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="text-green-400 text-sm">Cardiology</span>
+                <span class="text-gray-500 text-sm mx-2">•</span>
+                <span class="text-gray-500 text-sm">May 15, 2023</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">
+                10 Heart-Healthy Habits You Should Follow
+              </h3>
+              <p class="text-gray-400 mb-4">
+                Discover simple lifestyle changes that can significantly improve
+                your cardiovascular health and reduce risk factors.
+              </p>
+              <a
+                href="#"
+                class="text-green-400 hover:text-green-300 flex items-center transition"
+              >
+                Read More <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Article 2 -->
+          <div class="card overflow-hidden rounded-lg">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/716c1902-54fb-4f28-b403-55fd48149122.png"
+                alt="Person meditating at sunrise with overlay of brain scan showing activity"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="text-blue-400 text-sm">Mental Health</span>
+                <span class="text-gray-500 text-sm mx-2">•</span>
+                <span class="text-gray-500 text-sm">April 28, 2023</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">
+                Managing Stress with Mindfulness Techniques
+              </h3>
+              <p class="text-gray-400 mb-4">
+                Effective mindfulness practices that can help reduce stress and
+                improve your overall mental wellbeing in just minutes a day.
+              </p>
+              <a
+                href="#"
+                class="text-blue-400 hover:text-blue-300 flex items-center transition"
+              >
+                Read More <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Article 3 -->
+          <div class="card overflow-hidden rounded-lg">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fe108417-3971-4b76-a711-1f1045734b7c.png"
+                alt="Colorful array of fresh fruits and vegetables arranged in rainbow pattern"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="text-purple-400 text-sm">Nutrition</span>
+                <span class="text-gray-500 text-sm mx-2">•</span>
+                <span class="text-gray-500 text-sm">April 10, 2023</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3">
+                Superfoods for Immune System Boost
+              </h3>
+              <p class="text-gray-400 mb-4">
+                Science-backed superfoods that can naturally enhance your immune
+                response and help protect against illnesses.
+              </p>
+              <a
+                href="#"
+                class="text-purple-400 hover:text-purple-300 flex items-center transition"
+              >
+                Read More <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <button
+            class="border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white px-8 py-3 rounded-md text-lg font-semibold transition"
+          >
+            View All Articles
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Section -->
+    <section class="py-16 bg-red-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-3xl font-bold mb-4">
+              Emergency <span class="text-yellow-300">Assistance</span>
+            </h2>
+            <p class="text-lg mb-6">
+              In case of medical emergency, please call your local emergency
+              number immediately.
+            </p>
+            <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-phone-alt text-2xl text-red-400 mr-4"></i>
+                <div>
+                  <div class="text-sm text-gray-300">Europe, India, UK</div>
+                  <div class="text-xl font-semibold">112</div>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-phone-alt text-2xl text-red-400 mr-4"></i>
+                <div>
+                  <div class="text-sm text-gray-300">United States, Canada</div>
+                  <div class="text-xl font-semibold">911</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 flex justify-center">
+            <div class="bg-black bg-opacity-30 p-6 rounded-lg max-w-md">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/735f01f2-7963-488f-827c-a0df27329ea6.png"
+                alt="Emergency medical services responding with ambulance and medical team in action"
+                class="w-full rounded-lg mb-4"
+              />
+              <h3 class="text-xl font-semibold mb-2">
+                When to Call Emergency Services
+              </h3>
+              <ul class="list-disc pl-5 text-gray-300">
+                <li class="mb-1">
+                  Difficulty breathing or shortness of breath
+                </li>
+                <li class="mb-1">Chest pain or pressure</li>
+                <li class="mb-1">Sudden severe pain anywhere in the body</li>
+                <li class="mb-1">Uncontrolled bleeding</li>
+                <li class="mb-1">Sudden confusion or difficulty speaking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Contact <span class="text-green-400">Us</span>
+          </h2>
+          <p class="max-w-2xl mx-auto text-gray-400">
+            Have questions? We're here to help
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg overflow-hidden">
+          <div class="md:flex">
+            <div class="md:w-1/2 p-8 md:p-12">
+              <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+              <form>
+                <div class="mb-6">
+                  <label for="name" class="block text-gray-400 mb-2"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-green-500"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label for="email" class="block text-gray-400 mb-2"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-green-500"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label for="message" class="block text-gray-400 mb-2"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-green-500"
+                  ></textarea>
+                </div>
+                <button
+                  class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-md font-semibold transition"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div class="md:w-1/2 bg-gray-800 p-8 md:p-12">
+              <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <i class="fas fa-map-marker-alt text-green-400 mt-1 mr-4"></i>
+                  <div>
+                    <h4 class="font-semibold">Address</h4>
+                    <p class="text-gray-400">Wahdat Colony Street no 17.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-phone-alt text-green-400 mt-1 mr-4"></i>
+                  <div>
+                    <h4 class="font-semibold">Phone</h4>
+                    <p class="text-gray-400">+92-323-7713864</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-envelope text-green-400 mt-1 mr-4"></i>
+                  <div>
+                    <h4 class="font-semibold">Email</h4>
+                    <p class="text-gray-400">info@healthhubpro.com</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-clock text-green-400 mt-1 mr-4"></i>
+                  <div>
+                    <h4 class="font-semibold">Hours</h4>
+                    <p class="text-gray-400">24/7 Support Available</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 pt-6 border-t border-gray-700">
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+              <div class="flex space-x-4">
+  <a
+    href="https://www.healthline.com/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a
+    href="https://www.webmd.com/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a
+    href="https://www.mayoclinic.org/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a
+    href="https://www.who.int/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="py-16 bg-gradient-to-r from-green-900 to-blue-900">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-8 md:mb-0">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2dcba500-4c1f-4501-a845-cb965cd1c65e.png"
+              alt="HealthHub Pro mobile app interface showing health tracking features"
+              class="mx-auto max-w-xs md:max-w-md"
+            />
+          </div>
+          <div class="md:w-1/2 md:pl-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Download Our <span class="text-green-400">Mobile App</span>
+            </h2>
+            <p class="text-lg text-gray-300 mb-6">
+              Access all HealthHub Pro features on your mobile device. Track
+              your health, get reminders, and consult doctors anytime, anywhere.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button
+                class="bg-black bg-opacity-40 text-white px-6 py-3 rounded-lg flex items-center"
+              >
+                <i class="fab fa-apple text-2xl mr-2"></i>
+                <div class="text-left">
+                  <div class="text-xs">Download on the</div>
+                  <div class="font-semibold">App Store</div>
+                </div>
+              </button>
+              <button
+                class="bg-black bg-opacity-40 text-white px-6 py-3 rounded-lg flex items-center"
+              >
+                <i class="fab fa-google-play text-2xl mr-2"></i>
+                <div class="text-left">
+                  <div class="text-xs">Get it on</div>
+                  <div class="font-semibold">Google Play</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8 text-gray-400">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">HealthHub Pro</h3>
+            <p class="mb-4">
+              Your trusted source for reliable health information and medical
+              advice.
+            </p>
+<div class="flex space-x-4">
+  <a
+    href="https://www.healthline.com/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a
+    href="https://www.webmd.com/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a
+    href="https://www.mayoclinic.org/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a
+    href="https://www.who.int/"
+    target="_blank"
+    class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+  >
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+
+          </div>
+
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-green-400 transition">Home</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-green-400 transition"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a href="#symptoms" class="hover:text-green-400 transition"
+                  >Symptom Checker</a
+                >
+              </li>
+              <li>
+                <a href="#articles" class="hover:text-green-400 transition"
+                  >Articles</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-green-400 transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">Services</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-green-400 transition"
+                  >Symptom Checker</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition"
+                  >Health Library</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition"
+                  >Doctor Consultation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition"
+                  >Medication Tracker</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition"
+                  >Wellness Plans</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+            <p class="mb-4">
+              Subscribe to our newsletter for the latest health tips and
+              updates.
+            </p>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="bg-gray-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-1 focus:ring-green-500 w-full"
+              />
+              <button
+                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-r-md transition"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="mb-4 md:mb-0">
+            © 2023 HealthHub Pro. All rights reserved.
+          </div>
+          <div class="text-sm">
+            <a href="#" class="hover:text-green-400 transition mr-4"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-green-400 transition mr-4"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-green-400 transition">Disclaimer</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAy_SEVSrGnbZQBpZHab5MY6uLvHb_yFq0",
+    authDomain: "healthhubpro-bf23c.firebaseapp.com",
+    projectId: "healthhubpro-bf23c",
+    storageBucket: "healthhubpro-bf23c.appspot.com",
+    messagingSenderId: "432488480750",
+    appId: "1:432488480750:web:201bf70a95d9a2ab5318ff",
+    measurementId: "G-4FB8CHG5KY"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+    <script>
+      // Back to Top Button
+      // Correct Disease Data Structure
+      const diseaseData = {
+        fever: {
+          description:
+            "Fever is a temporary increase in your body temperature, often due to an illness.",
+          solutions: [
+            "Rest and drink plenty of fluids.",
+            "Take medications like acetaminophen.",
+            "Sponge bath with lukewarm water.",
+          ],
+        },
+        cough: {
+          description:
+            "Coughing helps clear your airways of irritants and infections.",
+          solutions: [
+            "Drink warm liquids.",
+            "Use cough drops.",
+            "Avoid smoke and dust.",
+          ],
+        },
+        "abdominal aortic aneurysm": {
+          description:
+            "An abdominal aortic aneurysm (AAA) is a bulging or swelling in the aorta, the main blood vessel running through the abdomen, which can rupture and cause life-threatening bleeding.",
+          solutions: [
+            "Monitor with regular ultrasounds if small.",
+            "Stop smoking and manage blood pressure.",
+            "Surgery if aneurysm is large or growing.",
+          ],
+        },
+        "achilles tendinopathy": {
+          description:
+            "Achilles tendinopathy is pain, swelling, and stiffness of the Achilles tendon, typically caused by overuse or injury.",
+          solutions: [
+            "Rest and reduce physical activity.",
+            "Physical therapy and stretching exercises.",
+            "Ice application and pain relief medications.",
+          ],
+        },
+        acne: {
+          description:
+            "Acne is a common skin condition where hair follicles become clogged with oil and dead skin cells, leading to pimples, blackheads, and inflammation.",
+          solutions: [
+            "Cleanse the skin gently and avoid scrubbing.",
+            "Use topical treatments like benzoyl peroxide or salicylic acid.",
+            "Consult a dermatologist for oral medications if severe.",
+          ],
+        },
+        "acute cholecystitis": {
+          description:
+            "Acute cholecystitis is inflammation of the gallbladder, often caused by gallstones blocking the bile duct.",
+          solutions: [
+            "Hospital admission for observation and IV fluids.",
+            "Pain relief and antibiotics.",
+            "Surgical removal of the gallbladder (cholecystectomy).",
+          ],
+        },
+        "acute lymphoblastic leukaemia": {
+          description:
+            "Acute lymphoblastic leukaemia (ALL) is a fast-growing cancer of the white blood cells affecting the bone marrow and blood.",
+          solutions: [
+            "Chemotherapy to destroy cancer cells.",
+            "Targeted therapy or bone marrow transplant if needed.",
+            "Ongoing monitoring and supportive care.",
+          ],
+        },
+        "acute lymphoblastic leukaemia children": {
+          description:
+            "Acute lymphoblastic leukaemia in children is a cancer of immature white blood cells, often treated successfully with intensive therapy.",
+          solutions: [
+            "Long-term chemotherapy plan (usually 2-3 years).",
+            "Supportive treatments for infections and nutrition.",
+            "Possible stem cell transplant in high-risk cases.",
+          ],
+        },
+        "acute_lymphoblastic_leukaemia_teens_young_adults": {
+          description:
+            "In teenagers and young adults, ALL presents similar to children but may require different treatment intensities and follow-up.",
+          solutions: [
+            "Combination chemotherapy protocols.",
+            "Monitoring for long-term side effects.",
+            "Psychosocial support and education continuity.",
+          ],
+        },
+        "acute myeloid leukaemia": {
+          description:
+            "Acute myeloid leukaemia (AML) is a cancer of the myeloid line of blood cells, characterized by rapid growth of abnormal cells.",
+          solutions: [
+            "Intensive chemotherapy in cycles.",
+            "Stem cell (bone marrow) transplant for suitable patients.",
+            "Supportive care like blood transfusions.",
+          ],
+        },
+        "acute myeloid leukaemia children": {
+          description:
+            "AML in children affects the bone marrow's ability to make normal blood cells and requires aggressive treatment.",
+          solutions: [
+            "High-dose chemotherapy and hospital stays.",
+            "Stem cell transplant if high risk or relapsed.",
+            "Long-term follow-up to monitor side effects.",
+          ],
+        },
+        "acute myeloid leukaemia teens young adults": {
+          description:
+            "AML in teens and young adults often requires intensive chemotherapy and personalized treatment approaches.",
+          solutions: [
+            "Chemotherapy and supportive blood product transfusions.",
+            "Stem cell transplant for some patients.",
+            "Monitoring mental health and fertility effects.",
+          ],
+        },
+        "acute pancreatitis": {
+          description:
+            "Acute pancreatitis is sudden inflammation of the pancreas, often due to gallstones or alcohol use.",
+          solutions: [
+            "Hospitalization for fluids and pain management.",
+            "Stop eating temporarily to let pancreas rest.",
+            "Treat underlying causes like gallstones or alcohol use.",
+          ],
+        },
+        "addisons disease": {
+          description:
+            "Addison’s disease is a rare disorder where the adrenal glands don’t produce enough hormones (cortisol and aldosterone).",
+          solutions: [
+            "Daily hormone replacement therapy.",
+            "Monitor for stress or infection triggers.",
+            "Emergency steroid injections during adrenal crises.",
+          ],
+        },
+        adenomyosis: {
+          description:
+            "Adenomyosis is a condition where tissue similar to the uterine lining grows into the uterus muscle, causing pain and heavy bleeding.",
+          solutions: [
+            "Pain relief with NSAIDs.",
+            "Hormonal treatments such as birth control pills.",
+            "Surgery (hysterectomy) in severe cases.",
+          ],
+        },
+        "alcohol related liver disease": {
+          description:
+            "Alcohol-related liver disease is liver damage caused by excessive alcohol intake, ranging from fatty liver to cirrhosis.",
+          solutions: [
+            "Stop drinking alcohol completely.",
+            "Healthy diet and medical monitoring.",
+            "Liver transplant in severe cirrhosis.",
+          ],
+        },
+        "allergic rhinitis": {
+          description:
+            "Allergic rhinitis is an allergic reaction causing sneezing, runny nose, and itchy eyes due to pollen, dust, or pet dander.",
+          solutions: [
+            "Avoid triggers (e.g., pollen, dust).",
+            "Take antihistamines or nasal corticosteroids.",
+            "Immunotherapy (allergy shots) in persistent cases.",
+          ],
+        },
+        allergies: {
+          description:
+            "Allergies are immune system reactions to foreign substances like pollen, foods, or medications.",
+          solutions: [
+            "Identify and avoid allergens.",
+            "Use antihistamines or corticosteroids.",
+            "Carry epinephrine auto-injector for severe allergies.",
+          ],
+        },
+        "alzheimers disease": {
+          description:
+            "Alzheimer’s disease is a progressive brain disorder causing memory loss, confusion, and difficulty with thinking.",
+          solutions: [
+            "Medications to slow cognitive decline (e.g., donepezil).",
+            "Create a structured, safe environment.",
+            "Support from caregivers and memory care services.",
+          ],
+        },
+        "anal cancer": {
+          description:
+            "Anal cancer is a rare cancer that starts in the tissues of the anus, often linked to HPV infection.",
+          solutions: [
+            "Chemoradiotherapy (combined chemo and radiation).",
+            "Surgery if needed for small tumors.",
+            "Regular follow-up to detect recurrence.",
+          ],
+        },
+        "anaphylaxis": {
+          description:
+            "Anaphylaxis is a severe, life-threatening allergic reaction that occurs rapidly and requires emergency treatment.",
+          solutions: [
+            "Use epinephrine auto-injector immediately.",
+            "Call emergency services (ambulance).",
+            "Hospital observation and allergist referral.",
+          ],
+        },
+        "angina": {
+          description:
+            "Angina is chest pain caused by reduced blood flow to the heart muscle, often due to coronary artery disease.",
+          solutions: [
+            "Rest and take prescribed nitroglycerin.",
+            "Lifestyle changes: diet, exercise, quit smoking.",
+            "Medications or surgery (e.g., stents, bypass).",
+          ],
+        },
+       " angioedema": {
+          description:
+            "Angioedema is swelling under the skin, often around the eyes and lips, usually due to allergic reactions.",
+          solutions: [
+            "Avoid known triggers.",
+            "Take antihistamines or corticosteroids.",
+            "Emergency care if breathing is affected.",
+          ],
+        },
+        "ankle sprain": {
+          description:
+            "An ankle sprain is a stretched or torn ligament in the ankle, usually caused by twisting or rolling it.",
+          solutions: [
+            "Rest, ice, compression, and elevation (RICE).",
+            "Avoid weight-bearing for a few days.",
+            "Physical therapy for severe sprains.",
+          ],
+        },
+        "ankle avulsion fracture": {
+          description:
+            "An ankle avulsion fracture occurs when a ligament pulls off a small piece of bone from the ankle.",
+          solutions: [
+            "Rest and wear a walking boot or cast.",
+            "Pain management with NSAIDs.",
+            "Physical therapy after healing.",
+          ],
+        },
+        "ankylosing spondylitis": {
+          description:
+            "Ankylosing spondylitis is a type of arthritis that causes long-term inflammation of the spine and joints.",
+          solutions: [
+            "Exercise and maintain good posture.",
+            "Anti-inflammatory drugs (NSAIDs).",
+            "Biologic therapies (TNF blockers) in severe cases.",
+          ],
+        },
+        "anorexia nervosa": {
+          description:
+            "Anorexia nervosa is an eating disorder where people avoid eating, severely restrict food, or eat very little, leading to dangerous weight loss.",
+          solutions: [
+            "Psychological therapy and family-based treatment.",
+            "Nutritional rehabilitation and monitoring.",
+            "Hospitalization if severely underweight or unstable.",
+          ],
+        },
+        "anxiety disorders children": {
+          description:
+            "Anxiety disorders in children involve excessive fear, worry, or nervousness that interferes with daily life.",
+          solutions: [
+            "Cognitive behavioral therapy (CBT).",
+            "Parent training and school support.",
+            "Medication (e.g., SSRIs) if severe and persistent.",
+          ],
+        },
+        "aplastic anaemia": {
+          description:
+            "Aplastic anaemia is a rare condition where the bone marrow fails to produce enough blood cells.",
+          solutions: [
+            "Blood transfusions and infection prevention.",
+            "Immunosuppressive therapy.",
+            "Bone marrow transplant in suitable patients.",
+          ],
+        },
+        "appendicitis": {
+          description:
+            "Appendicitis is inflammation of the appendix, usually requiring urgent surgery to prevent rupture.",
+          solutions: [
+            "Surgical removal of the appendix (appendectomy).",
+            "Antibiotics before and after surgery.",
+            "Pain relief and rest post-surgery.",
+          ],
+        },
+        "arterial thrombosis": {
+          description:
+            "Arterial thrombosis is the formation of a blood clot in an artery, which can block blood flow and cause heart attack or stroke.",
+          solutions: [
+            "Antiplatelet or anticoagulant medications.",
+            "Emergency procedures like angioplasty.",
+            "Lifestyle changes and long-term medication.",
+          ],
+        },
+        "arthritis": {
+          description:
+            "Arthritis is inflammation of one or more joints, causing pain, swelling, and stiffness.",
+          solutions: [
+            "Pain relief medications (NSAIDs).",
+            "Exercise and weight management.",
+            "Joint injections or surgery in advanced cases.",
+          ],
+        },
+        "asbestosis": {
+          description:
+            "Asbestosis is a lung disease caused by inhaling asbestos fibers, leading to scarring of lung tissue.",
+          solutions: [
+            "Avoid further asbestos exposure.",
+            "Use oxygen therapy if needed.",
+            "Manage symptoms and monitor for lung cancer.",
+          ],
+        },
+        "asthma": {
+          description:
+            "Asthma is a chronic condition where the airways become inflamed and narrowed, causing breathing difficulties.",
+          solutions: [
+            "Use inhalers (relievers and preventers).",
+            "Avoid triggers like dust or smoke.",
+            "Follow a personalized asthma action plan.",
+          ],
+        },
+        "ataxia": {
+          description:
+            "Ataxia refers to lack of muscle coordination that can affect speech, eye movement, walking, and fine motor tasks.",
+          solutions: [
+            "Treat underlying cause (e.g., vitamin deficiency, stroke).",
+            "Physical, occupational, and speech therapy.",
+            "Mobility aids and supportive care.",
+          ],
+        },
+        "atopic eczema": {
+          description:
+            "Atopic eczema is a chronic skin condition causing itchy, dry, and inflamed skin.",
+          solutions: [
+            "Moisturize regularly to prevent dryness.",
+            "Use topical steroids or calcineurin inhibitors.",
+            "Avoid known irritants and allergens.",
+          ],
+        },
+        "atrial fibrillation": {
+          description:
+            "Atrial fibrillation is an irregular and often rapid heart rhythm that increases stroke risk.",
+          solutions: [
+            "Medications to control heart rate or rhythm.",
+            "Blood thinners to prevent clots.",
+            "Cardioversion or ablation in persistent cases.",
+          ],
+        },
+        "adhd": {
+          description:
+            "Attention deficit hyperactivity disorder (ADHD) is a condition that affects focus, self-control, and behavior.",
+          solutions: [
+            "Behavioral therapy and structure at home/school.",
+            "Stimulant medications like methylphenidate.",
+            "Parent and teacher support programs.",
+          ],
+        },
+        "autism": {
+          description:
+            "Autism spectrum disorder (ASD) is a developmental condition affecting communication, behavior, and social skills.",
+          solutions: [
+            "Behavioral therapy (ABA, speech therapy).",
+            "Support for education and daily routines.",
+            "Family training and community services.",
+          ],
+        },
+        "Back problems": {
+          description:
+            "Back problems include a range of conditions affecting the spine and surrounding muscles, commonly causing pain and limited mobility.",
+          solutions: [
+            "Stay active and avoid prolonged bed rest.",
+            "Use physical therapy and exercises.",
+            "Painkillers or anti-inflammatory medication if needed.",
+          ],
+        },
+        "Bacterial vaginosis": {
+          description:
+            "Bacterial vaginosis is an imbalance of natural bacteria in the vagina, leading to unusual discharge and odor.",
+          solutions: [
+            "Prescription antibiotics like metronidazole.",
+            "Avoid using perfumed soaps or douches.",
+            "Practice safe sex and proper hygiene.",
+          ],
+        },
+        "Becker muscular dystrophy": {
+          description:
+            "Becker muscular dystrophy is a genetic condition that causes progressive muscle weakness, mostly in boys and men.",
+          solutions: [
+            "Physical therapy and exercise to maintain strength.",
+            "Use mobility aids when needed.",
+            "Monitor heart and lung health regularly.",
+          ],
+        },
+        "Benign prostate enlargement": {
+          description:
+            "Benign prostate enlargement is a non-cancerous growth of the prostate gland, common in older men, which can affect urination.",
+          solutions: [
+            "Medications to relax or shrink the prostate.",
+            "Lifestyle changes like reducing caffeine and alcohol.",
+            "Surgery in severe cases (e.g., TURP).",
+          ],
+        },
+        "Bile duct cancer (cholangiocarcinoma)": {
+          description:
+            "Bile duct cancer is a rare cancer that forms in the bile ducts inside or outside the liver.",
+          solutions: [
+            "Surgery to remove the tumor if possible.",
+            "Chemotherapy or radiation therapy.",
+            "Palliative care for advanced stages.",
+          ],
+        },
+        "Binge eating disorder (BED)": {
+          description:
+            "BED is a serious eating disorder where people frequently consume large amounts of food and feel unable to stop.",
+          solutions: [
+            "Cognitive behavioral therapy (CBT).",
+            "Nutritional counseling and support groups.",
+            "Medications like antidepressants if needed.",
+          ],
+        },
+        "Bipolar disorder": {
+          description:
+            "Bipolar disorder causes extreme mood swings including emotional highs (mania) and lows (depression).",
+          solutions: [
+            "Mood stabilizing medications (e.g., lithium).",
+            "Therapy such as CBT or interpersonal therapy.",
+            "Lifestyle management and regular routines.",
+          ],
+        },
+        "Bladder cancer": {
+          description:
+            "Bladder cancer is the growth of abnormal tissue in the bladder lining, often causing blood in urine.",
+          solutions: [
+            "Surgery to remove cancerous tissue.",
+            "Chemotherapy or immunotherapy.",
+            "Close monitoring for recurrence.",
+          ],
+        },
+        "Blood poisoning (sepsis)": {
+          description:
+            "Sepsis is a life-threatening condition where the body reacts severely to an infection, damaging its own organs.",
+          solutions: [
+            "Immediate antibiotics and IV fluids.",
+            "Hospital admission and organ support.",
+            "Early diagnosis is critical to survival.",
+          ],
+        },
+        "Bone cancer": {
+          description:
+            "Bone cancer is a rare type of cancer that starts in the bone cells, often in the arms or legs.",
+          solutions: [
+            "Surgery to remove the tumor.",
+            "Chemotherapy and/or radiotherapy.",
+            "Rehabilitation to regain movement.",
+          ],
+        },
+        "Bone cancer: Teenagers and young adults": {
+          description:
+            "Bone cancer in young people can be aggressive, often affecting long bones like the legs and arms.",
+          solutions: [
+            "Chemotherapy followed by surgery.",
+            "Support for emotional and school needs.",
+            "Physical therapy after treatment.",
+          ],
+        },
+        "Bowel cancer": {
+          description:
+            "Bowel cancer, also called colorectal cancer, affects the large intestine and can cause changes in bowel habits.",
+          solutions: [
+            "Surgery to remove the cancer.",
+            "Chemotherapy or targeted therapy.",
+            "Regular screening to catch early signs.",
+          ],
+        },
+        "Bowel incontinence": {
+          description:
+            "Bowel incontinence is the inability to control bowel movements, leading to accidental leakage.",
+          solutions: [
+            "Pelvic floor exercises and diet changes.",
+            "Medications or bowel training programs.",
+            "Surgery in severe cases.",
+          ],
+        },
+        "Bowel polyps": {
+          description:
+            "Bowel polyps are small growths on the inner lining of the colon or rectum that may develop into cancer.",
+          solutions: [
+            "Regular screening with colonoscopy.",
+            "Polyp removal during colonoscopy.",
+            "Healthy diet and lifestyle to prevent recurrence.",
+          ],
+        },
+        "Bow legs and knock knees in children and young people": {
+          description:
+            "Bow legs and knock knees are common in growing children and usually correct with age.",
+          solutions: [
+            "No treatment needed in most cases.",
+            "Bracing or physical therapy if severe.",
+            "Surgery only if deformity persists into adolescence.",
+          ],
+        },
+        "Brain stem death": {
+          description:
+            "Brain stem death is the irreversible loss of all brain stem function, meaning the person has permanently lost the capacity for consciousness and breathing.",
+          solutions: [
+            "Life support may be withdrawn once diagnosis is confirmed.",
+            "Organ donation discussions may follow.",
+            "Support provided to the family.",
+          ],
+        },
+        "Brain tumours": {
+          description:
+            "Brain tumors are abnormal growths in the brain that can be benign or malignant and affect brain function.",
+          solutions: [
+            "Surgical removal of the tumor.",
+            "Radiation or chemotherapy depending on type.",
+            "Rehabilitation for speech and movement issues.",
+          ],
+        },
+        "Brain tumours: Children": {
+          description:
+            "Brain tumors in children can affect development and require specialized treatment plans.",
+          solutions: [
+            "Surgery and radiation therapy tailored for age.",
+            "Supportive care during and after treatment.",
+            "Educational and emotional support for recovery.",
+          ],
+        },
+        "Brain tumours: Teenagers and young adults": {
+          description:
+            "Brain tumors in this group often need age-specific medical and emotional support.",
+          solutions: [
+            "Combination of surgery, chemo, and radiotherapy.",
+            "Help with returning to education or work.",
+            "Long-term follow-up for late effects.",
+          ],
+        },
+        "Breast cancer (female)": {
+          description:
+            "Breast cancer in women is a common cancer that starts in the breast tissue and may spread if untreated.",
+          solutions: [
+            "Surgery (lumpectomy or mastectomy).",
+            "Chemotherapy, radiotherapy, or hormone therapy.",
+            "Regular screening and self-exams.",
+          ],
+        },
+        "Breast cancer (male)": {
+          description:
+            "Breast cancer in men is rare but can occur, usually presenting as a lump in the chest.",
+          solutions: [
+            "Surgical removal of the lump.",
+            "Hormonal therapy or chemotherapy.",
+            "Regular checkups for recurrence.",
+          ],
+        },
+        Bronchiectasis: {
+          description:
+            "Bronchiectasis is a long-term condition where the airways widen and become inflamed, leading to mucus buildup.",
+          solutions: [
+            "Daily chest physiotherapy to clear mucus.",
+            "Antibiotics for infections.",
+            "Vaccinations and regular monitoring.",
+          ],
+        },
+        Bronchitis: {
+          description:
+            "Bronchitis is inflammation of the airways in the lungs, causing cough and mucus production.",
+          solutions: [
+            "Rest and fluids.",
+            "Avoid smoking and pollutants.",
+            "Bronchodilators or antibiotics if needed.",
+          ],
+        },
+        "Bulimia nervosa": {
+          description:
+            "Bulimia nervosa is an eating disorder marked by binge eating followed by purging through vomiting or laxatives.",
+          solutions: [
+            "Cognitive behavioral therapy (CBT).",
+            "Nutritional and psychological support.",
+            "Antidepressant medications if required.",
+          ],
+        },
+        "Bunion (hallux valgus)": {
+          description:
+            "A bunion is a bony bump that forms at the base of the big toe, often causing pain and swelling.",
+          solutions: [
+            "Wear comfortable shoes with wide toe boxes.",
+            "Use bunion pads or orthotic inserts.",
+            "Surgery for severe or persistent cases.",
+          ],
+        },
+        "Carcinoid syndrome and carcinoid tumours": {
+          description:
+            "A rare condition caused by slow-growing tumors that release hormones, leading to flushing, diarrhea, and wheezing.",
+          solutions: [
+            "Medications to block hormone effects.",
+            "Surgery to remove tumors.",
+            "Targeted therapies or chemotherapy in advanced cases.",
+          ],
+        },
+        "Cardiovascular disease": {
+          description:
+            "A group of heart and blood vessel disorders including heart attacks, strokes, and hypertension.",
+          solutions: [
+            "Eat a heart-healthy diet.",
+            "Exercise regularly.",
+            "Take prescribed medications and manage blood pressure.",
+          ],
+        },
+        "Carpal tunnel syndrome": {
+          description:
+            "A condition where pressure on the median nerve in the wrist causes pain, numbness, and weakness in the hand.",
+          solutions: [
+            "Wear a wrist splint, especially at night.",
+            "Avoid repetitive hand movements.",
+            "Consider surgery if symptoms are severe.",
+          ],
+        },
+        Catarrh: {
+          description:
+            "A build-up of mucus in the nose or throat due to infection or allergy.",
+          solutions: [
+            "Use saline nasal sprays or decongestants.",
+            "Stay hydrated.",
+            "Identify and avoid allergy triggers.",
+          ],
+        },
+        Cellulitis: {
+          description:
+            "A bacterial skin infection that causes redness, swelling, and warmth, usually on the legs or arms.",
+          solutions: [
+            "Take prescribed antibiotics.",
+            "Keep the affected area elevated.",
+            "Clean any cuts or wounds promptly.",
+          ],
+        },
+        "Cerebral palsy": {
+          description:
+            "A group of disorders affecting movement and muscle tone, caused by brain damage before or at birth.",
+          solutions: [
+            "Physical and occupational therapy.",
+            "Medications for muscle stiffness.",
+            "Surgery for severe mobility issues.",
+          ],
+        },
+        "Cervical cancer": {
+          description:
+            "Cancer of the cervix, often linked to human papillomavirus (HPV) infection.",
+          solutions: [
+            "Get regular Pap tests and HPV vaccination.",
+            "Radiation or chemotherapy for advanced stages.",
+            "Surgery to remove cancerous tissue.",
+          ],
+        },
+        "Cervical spondylosis": {
+          description:
+            "Age-related wear and tear of the spinal discs in the neck.",
+          solutions: [
+            "Physical therapy and neck exercises.",
+            "Use of neck collars temporarily.",
+            "Pain relievers and anti-inflammatory medications.",
+          ],
+        },
+        "Chest and rib injury": {
+          description:
+            "Damage to the chest wall or ribs due to trauma, causing pain and difficulty breathing.",
+          solutions: [
+            "Rest and avoid strenuous activities.",
+            "Use pain relievers.",
+            "Seek medical help for severe or persistent pain.",
+          ],
+        },
+        "Chest infection": {
+          description:
+            "An infection in the lungs or airways, such as bronchitis or pneumonia.",
+          solutions: [
+            "Take antibiotics if bacterial.",
+            "Drink plenty of fluids and rest.",
+            "Use steam inhalation to ease breathing.",
+          ],
+        },
+        Chickenpox: {
+          description:
+            "A viral infection causing an itchy rash and red spots or blisters all over the body.",
+          solutions: [
+            "Use calamine lotion and antihistamines.",
+            "Keep fingernails trimmed to avoid scratching.",
+            "Rest and stay hydrated.",
+          ],
+        },
+        Chilblains: {
+          description:
+            "Painful inflammation of small blood vessels in response to cold temperatures.",
+          solutions: [
+            "Keep warm and avoid rapid temperature changes.",
+            "Use soothing creams.",
+            "Avoid scratching the affected areas.",
+          ],
+        },
+        Chlamydia: {
+          description:
+            "A common sexually transmitted infection that can cause genital pain and discharge.",
+          solutions: [
+            "Take prescribed antibiotics.",
+            "Inform and treat sexual partners.",
+            "Practice safe sex.",
+          ],
+        },
+        "Chronic fatigue syndrome": {
+          description:
+            "A long-term illness with extreme fatigue that doesn’t improve with rest.",
+          solutions: [
+            "Establish a gentle exercise routine.",
+            "Use sleep hygiene techniques.",
+            "Seek support therapy or counseling.",
+          ],
+        },
+        Deafblindness: {
+          description:
+            "A combination of hearing and vision loss that significantly impacts communication and independence.",
+          solutions: [
+            "Use tactile and visual communication tools.",
+            "Specialist support and mobility training.",
+            "Assistive technology and caregiver guidance.",
+          ],
+        },
+
+        "Deep vein thrombosis": {
+          description:
+            "A blood clot that forms in a deep vein, usually in the leg, and can be life-threatening if it travels to the lungs.",
+          solutions: [
+            "Take anticoagulant medications (blood thinners).",
+            "Wear compression stockings.",
+            "Stay active and hydrated during long periods of sitting.",
+          ],
+        },
+
+        "Degenerative cervical myelopathy": {
+          description:
+            "A condition where age-related changes compress the spinal cord in the neck, leading to weakness and coordination issues.",
+          solutions: [
+            "Physical therapy and neck support.",
+            "Avoid activities that worsen symptoms.",
+            "Surgery in moderate to severe cases.",
+          ],
+        },
+
+        Dehydration: {
+          description:
+            "A condition where the body loses more fluids than it takes in, affecting normal bodily functions.",
+          solutions: [
+            "Drink fluids regularly, especially in hot weather.",
+            "Use oral rehydration solutions if needed.",
+            "Seek medical help in severe cases.",
+          ],
+        },
+
+        Delirium: {
+          description:
+            "A sudden change in mental state causing confusion, disorientation, and difficulty with focus.",
+          solutions: [
+            "Identify and treat the underlying cause.",
+            "Ensure a calm, well-lit environment.",
+            "Monitor hydration, sleep, and medications.",
+          ],
+        },
+
+        Dementia: {
+          description:
+            "A group of conditions affecting memory, thinking, and social abilities, interfering with daily life.",
+          solutions: [
+            "Use memory aids and maintain routines.",
+            "Medications may slow progression in some cases.",
+            "Support from caregivers and professionals.",
+          ],
+        },
+
+        "Dementia with Lewy bodies": {
+          description:
+            "A type of dementia with movement symptoms, hallucinations, and sleep disturbances.",
+          solutions: [
+            "Medications for memory and movement symptoms.",
+            "Establish daily routines and safety measures.",
+            "Caregiver education and support.",
+          ],
+        },
+
+        "Dental abscess": {
+          description:
+            "A buildup of pus in a tooth or gum due to infection, causing pain and swelling.",
+          solutions: [
+            "Seek urgent dental treatment.",
+            "Take prescribed antibiotics if needed.",
+            "Drain the abscess and treat the tooth.",
+          ],
+        },
+
+        Depression: {
+          description:
+            "A mood disorder causing persistent sadness, loss of interest, and fatigue.",
+          solutions: [
+            "Counseling or cognitive behavioral therapy (CBT).",
+            "Antidepressant medications if needed.",
+            "Support from family and community.",
+          ],
+        },
+
+        "Dermatitis herpetiformis": {
+          description:
+            "An intensely itchy skin condition linked to gluten sensitivity (celiac disease).",
+          solutions: [
+            "Follow a strict gluten-free diet.",
+            "Use dapsone or other prescribed treatments.",
+            "Avoid scratching to reduce skin damage.",
+          ],
+        },
+
+        "Diabetic retinopathy": {
+          description:
+            "An eye condition caused by damage to blood vessels in the retina due to diabetes.",
+          solutions: [
+            "Control blood sugar and blood pressure.",
+            "Get regular eye screenings.",
+            "Laser therapy or injections if needed.",
+          ],
+        },
+
+        Diarrhoea: {
+          description:
+            "Frequent, loose, or watery bowel movements, often caused by infection or food issues.",
+          solutions: [
+            "Stay hydrated with water and oral rehydration salts.",
+            "Avoid fatty or spicy foods temporarily.",
+            "Consult a doctor if symptoms last over 2 days.",
+          ],
+        },
+
+        "Discoid eczema": {
+          description:
+            "A chronic skin condition causing coin-shaped patches of red, itchy, and inflamed skin.",
+          solutions: [
+            "Use emollients and topical steroids.",
+            "Avoid known irritants.",
+            "Keep skin moisturized regularly.",
+          ],
+        },
+
+        "Diverticular disease and diverticulitis": {
+          description:
+            "A condition where small bulges (diverticula) form in the colon wall, sometimes becoming inflamed or infected.",
+          solutions: [
+            "Eat a high-fiber diet to prevent flare-ups.",
+            "Use antibiotics and pain relief during infection.",
+            "Surgery in recurring or severe cases.",
+          ],
+        },
+
+        Dizziness: {
+          description:
+            "A feeling of unsteadiness, spinning, or lightheadedness, often linked to inner ear or blood pressure issues.",
+          solutions: [
+            "Sit or lie down until dizziness passes.",
+            "Stay hydrated and avoid sudden movements.",
+            "Treat underlying conditions like vertigo or anemia.",
+          ],
+        },
+
+        "Down’s syndrome": {
+          description:
+            "A genetic condition caused by an extra chromosome, affecting learning, development, and physical features.",
+          solutions: [
+            "Early intervention and educational support.",
+            "Regular medical checkups for associated conditions.",
+            "Speech and occupational therapy.",
+          ],
+        },
+
+        "Dry mouth": {
+          description:
+            "A condition where the mouth doesn't produce enough saliva, causing discomfort and oral health issues.",
+          solutions: [
+            "Sip water frequently or use saliva substitutes.",
+            "Chew sugar-free gum or lozenges.",
+            "Avoid caffeine, alcohol, and tobacco.",
+          ],
+        },
+
+        "Duchenne muscular dystrophy": {
+          description:
+            "A severe genetic disorder causing progressive muscle weakness, primarily in boys.",
+          solutions: [
+            "Physical therapy to maintain mobility.",
+            "Use of mobility aids and respiratory support.",
+            "Steroid medications to slow progression.",
+          ],
+        },
+
+        Dysphagia: {
+          description:
+            "Difficulty swallowing food or liquids, often due to neurological or structural issues.",
+          solutions: [
+            "Eat slowly and choose softer foods.",
+            "Speech and swallow therapy.",
+            "Feeding tube in severe cases.",
+          ],
+        },
+
+        Dystonia: {
+          description:
+            "A movement disorder causing involuntary muscle contractions and abnormal postures.",
+          solutions: [
+            "Botox injections to reduce spasms.",
+            "Medications to relax muscles.",
+            "Physical therapy and deep brain stimulation in severe cases.",
+          ],
+        },
+        "Eating disorders": {
+          description:
+            "Mental health conditions causing unhealthy eating habits like overeating or undereating.",
+          solutions: [
+            "Seek nutritional counseling and support.",
+            "Cognitive behavioral therapy (CBT).",
+            "Medical monitoring and recovery plans.",
+          ],
+        },
+
+        Earache: {
+          description:
+            "Pain in the ear due to infection, injury, or pressure changes.",
+          solutions: [
+            "Use warm compresses for relief.",
+            "Take painkillers like ibuprofen.",
+            "Consult a doctor if pain persists.",
+          ],
+        },
+
+        "Early miscarriage": {
+          description: "Loss of a pregnancy during the first 12 weeks.",
+          solutions: [
+            "Seek emotional support and counseling.",
+            "Monitor for excessive bleeding or pain.",
+            "Follow-up with a healthcare provider.",
+          ],
+        },
+
+        "Earwax build-up": {
+          description:
+            "Excess wax in the ear canal causing blockage or discomfort.",
+          solutions: [
+            "Use ear drops to soften the wax.",
+            "Avoid using cotton swabs inside ears.",
+            "See a doctor for safe removal if needed.",
+          ],
+        },
+
+        "Ebola virus disease": {
+          description:
+            "A rare but deadly viral infection causing fever, bleeding, and organ failure.",
+          solutions: [
+            "Immediate isolation and medical care.",
+            "Supportive treatment like fluids and oxygen.",
+            "Prevent with hygiene and avoiding contact with infected individuals.",
+          ],
+        },
+
+        "Ectopic pregnancy": {
+          description:
+            "A pregnancy where the fertilized egg implants outside the uterus.",
+          solutions: [
+            "Seek emergency medical care.",
+            "Treatment may involve medication or surgery.",
+            "Follow up to ensure complete recovery.",
+          ],
+        },
+
+        "Elbow fracture": {
+          description: "A break in one of the bones in the elbow joint.",
+          solutions: [
+            "Immobilize the arm using a sling or cast.",
+            "Apply ice and elevate to reduce swelling.",
+            "Consult an orthopedic specialist.",
+          ],
+        },
+
+        "Edwards’ syndrome": {
+          description:
+            "A rare genetic disorder (trisomy 18) causing severe developmental issues.",
+          solutions: [
+            "Supportive care for symptoms.",
+            "Regular pediatric checkups.",
+            "Genetic counseling for families.",
+          ],
+        },
+
+        "Emery-Dreifuss muscular dystrophy": {
+          description:
+            "A genetic condition causing muscle weakness and joint stiffness.",
+          solutions: [
+            "Physical therapy to improve mobility.",
+            "Use of orthopedic devices as needed.",
+            "Regular heart and muscle monitoring.",
+          ],
+        },
+
+        Endometriosis: {
+          description:
+            "A condition where tissue similar to the uterine lining grows outside the uterus.",
+          solutions: [
+            "Pain relievers like NSAIDs.",
+            "Hormonal therapy to reduce tissue growth.",
+            "Surgical options for severe cases.",
+          ],
+        },
+
+        Epilepsy: {
+          description: "A neurological disorder causing recurrent seizures.",
+          solutions: [
+            "Anti-seizure medications.",
+            "Identify and avoid seizure triggers.",
+            "Follow-up care with a neurologist.",
+          ],
+        },
+
+        "Erectile dysfunction": {
+          description:
+            "The inability to achieve or maintain an erection for sexual activity.",
+          solutions: [
+            "Lifestyle changes like reducing stress and quitting smoking.",
+            "Medications such as sildenafil (Viagra).",
+            "Psychological counseling if needed.",
+          ],
+        },
+
+        Escherichia: {
+          description:
+            "A group of bacteria (like E. coli) that can cause infections in the gut or urinary tract.",
+          solutions: [
+            "Stay hydrated and rest.",
+            "Antibiotics if prescribed by a doctor.",
+            "Maintain good hygiene to prevent spread.",
+          ],
+        },
+
+        "Ewing sarcoma": {
+          description:
+            "A rare cancer that forms in bone or soft tissue, mostly in adolescents.",
+          solutions: [
+            "Chemotherapy and radiation therapy.",
+            "Surgical removal of the tumor.",
+            "Long-term follow-up care.",
+          ],
+        },
+
+        "Ewing sarcoma: Children": {
+          description:
+            "A type of bone cancer mostly affecting children and young teens.",
+          solutions: [
+            "Multimodal treatment: chemo, surgery, and radiation.",
+            "Rehabilitation and physical therapy post-treatment.",
+            "Emotional and family support throughout care.",
+          ],
+        },
+
+        "Eye cancer": {
+          description:
+            "A rare cancer that starts in or around the eye tissues.",
+          solutions: [
+            "Radiation or laser therapy.",
+            "Surgical removal of the tumor or eye (in severe cases).",
+            "Ongoing monitoring for vision and spread.",
+          ],
+        },
+        Farting: {
+          description:
+            "Passing gas from the digestive system through the rectum, usually due to digestion or swallowed air.",
+          solutions: [
+            "Avoid gas-producing foods like beans and soda.",
+            "Eat slowly to reduce swallowed air.",
+            "Try simethicone tablets if needed.",
+          ],
+        },
+
+        "Febrile seizures": {
+          description:
+            "Seizures caused by high fever, typically in children aged 6 months to 5 years.",
+          solutions: [
+            "Cool the child gently and give fever medicine.",
+            "Lay the child on their side during the seizure.",
+            "Consult a doctor for further evaluation.",
+          ],
+        },
+
+        "Feeling of something in your throat": {
+          description:
+            "A sensation of a lump or object in the throat, often due to anxiety, reflux, or throat irritation.",
+          solutions: [
+            "Sip water and stay calm.",
+            "Avoid irritants like smoking or spicy food.",
+            "See a doctor if it persists or causes pain.",
+          ],
+        },
+
+        "Fever in adults": {
+          description:
+            "A temporary increase in body temperature, usually due to infection or inflammation.",
+          solutions: [
+            "Rest and drink plenty of fluids.",
+            "Use paracetamol or ibuprofen for relief.",
+            "Seek medical care if fever is very high or persistent.",
+          ],
+        },
+
+        "Fever in children": {
+          description:
+            "An elevated body temperature, often caused by infections in children.",
+          solutions: [
+            "Give fever medicine like paracetamol in the correct dose.",
+            "Keep the child hydrated and comfortable.",
+            "See a doctor if fever lasts more than 3 days.",
+          ],
+        },
+
+        Fibroids: {
+          description:
+            "Non-cancerous growths in or around the uterus, common in women of reproductive age.",
+          solutions: [
+            "Monitor small fibroids without symptoms.",
+            "Use medication to shrink large fibroids.",
+            "Surgical removal in severe cases.",
+          ],
+        },
+
+        Fibromyalgia: {
+          description:
+            "A long-term condition causing pain, fatigue, and sleep problems.",
+          solutions: [
+            "Gentle exercise and stress management.",
+            "Pain relievers and antidepressants.",
+            "Cognitive behavioral therapy (CBT).",
+          ],
+        },
+
+        "Flat feet in children and young people": {
+          description:
+            "A condition where the arches of the feet are flattened, common in children.",
+          solutions: [
+            "Usually no treatment needed if painless.",
+            "Use supportive footwear or insoles if needed.",
+            "Consult a specialist if pain or issues develop.",
+          ],
+        },
+
+        Flu: {
+          description:
+            "A viral infection causing fever, chills, cough, and body aches.",
+          solutions: [
+            "Rest and drink plenty of fluids.",
+            "Take antiviral medicine if prescribed early.",
+            "Get annual flu vaccines for prevention.",
+          ],
+        },
+
+        "Foetal alcohol syndrome": {
+          description:
+            "A serious condition in babies caused by alcohol use during pregnancy.",
+          solutions: [
+            "Early developmental support and therapies.",
+            "Educational and behavioral interventions.",
+            "Support for parents and families.",
+          ],
+        },
+
+        "Food allergy": {
+          description:
+            "An immune system reaction to a specific food, sometimes causing severe symptoms.",
+          solutions: [
+            "Avoid known allergens strictly.",
+            "Carry and use an epinephrine injector (EpiPen).",
+            "Consult an allergist for diagnosis and advice.",
+          ],
+        },
+
+        "Food poisoning": {
+          description:
+            "Illness caused by consuming contaminated food or water.",
+          solutions: [
+            "Rest and stay hydrated.",
+            "Use oral rehydration salts (ORS) if needed.",
+            "Seek medical help if symptoms are severe or prolonged.",
+          ],
+        },
+
+        "Fragility fracture of the hip": {
+          description:
+            "A break in the hip bone due to weak bones, often from osteoporosis.",
+          solutions: [
+            "Immediate surgical treatment is usually needed.",
+            "Rehabilitation and physiotherapy.",
+            "Prevent future fractures with bone-strengthening therapy.",
+          ],
+        },
+
+        "Frozen shoulder": {
+          description:
+            "Stiffness and pain in the shoulder joint due to inflammation.",
+          solutions: [
+            "Physical therapy exercises.",
+            "Pain relief medications.",
+            "Steroid injections or surgery if needed.",
+          ],
+        },
+
+        "Functional neurological disorder": {
+          description:
+            "A condition with neurological symptoms like weakness or seizures, without structural brain damage.",
+          solutions: [
+            "Education and reassurance.",
+            "Physiotherapy and psychological therapy.",
+            "Multidisciplinary treatment approach.",
+          ],
+        },
+
+        "Fungal nail infection": {
+          description:
+            "A common infection causing thickened, discolored, or brittle nails.",
+          solutions: [
+            "Use antifungal creams or oral medication.",
+            "Keep feet dry and clean.",
+            "Trim and care for affected nails regularly.",
+          ],
+        },
+        "Gallbladder cancer": {
+          description:
+            "A rare but aggressive cancer that starts in the gallbladder, often detected late.",
+          solutions: [
+            "Surgical removal of the gallbladder if diagnosed early.",
+            "Chemotherapy or radiation in advanced cases.",
+            "Palliative care for symptom relief.",
+          ],
+        },
+
+        Gallstones: {
+          description:
+            "Hard deposits formed in the gallbladder, often causing pain or digestive issues.",
+          solutions: [
+            "Pain relief with medication.",
+            "Surgical removal of the gallbladder if stones are severe.",
+            "Avoid fatty foods to prevent attacks.",
+          ],
+        },
+
+        "Ganglion cyst": {
+          description:
+            "A non-cancerous lump often found on the wrist or hand, filled with fluid.",
+          solutions: [
+            "May disappear on its own.",
+            "Aspiration (draining) by a doctor.",
+            "Surgical removal if painful or recurring.",
+          ],
+        },
+
+        "Ganglion cysts in children and young people": {
+          description:
+            "Fluid-filled swellings near joints or tendons, usually painless in children.",
+          solutions: [
+            "Often monitored without treatment.",
+            "Use splints if causing discomfort.",
+            "Surgical removal in persistent or painful cases.",
+          ],
+        },
+
+        Gastroenteritis: {
+          description:
+            "An infection causing diarrhea, vomiting, and stomach cramps, often due to viruses.",
+          solutions: [
+            "Rest and drink plenty of fluids.",
+            "Use ORS to prevent dehydration.",
+            "Practice good hygiene to prevent spread.",
+          ],
+        },
+
+        "Gastro-oesophageal reflux disease": {
+          description:
+            "A condition where stomach acid flows back into the esophagus, causing heartburn.",
+          solutions: [
+            "Avoid spicy or acidic foods.",
+            "Use antacids or acid-reducing medication.",
+            "Sleep with head elevated and maintain healthy weight.",
+          ],
+        },
+
+        "Generalised anxiety disorder": {
+          description:
+            "A mental health condition marked by excessive and persistent worry.",
+          solutions: [
+            "Cognitive behavioral therapy (CBT).",
+            "Anti-anxiety or antidepressant medication.",
+            "Relaxation techniques and regular exercise.",
+          ],
+        },
+
+        "Genital herpes": {
+          description:
+            "A common viral infection causing painful blisters or sores in the genital area.",
+          solutions: [
+            "Antiviral medication to reduce outbreaks.",
+            "Avoid sexual contact during outbreaks.",
+            "Use condoms to lower transmission risk.",
+          ],
+        },
+
+        "Genital symptoms": {
+          description:
+            "Symptoms like itching, discharge, or pain in the genital area, possibly due to infection or irritation.",
+          solutions: [
+            "Get tested for STIs if symptoms appear.",
+            "Use prescribed creams or medication.",
+            "Practice good hygiene and safe sex.",
+          ],
+        },
+
+        "Genital warts": {
+          description:
+            "Small growths on the genitals caused by the human papillomavirus (HPV).",
+          solutions: [
+            "Topical treatments or freezing (cryotherapy).",
+            "Laser or surgical removal in stubborn cases.",
+            "HPV vaccine to prevent future infections.",
+          ],
+        },
+
+        "Germ cell tumours": {
+          description:
+            "Tumors that begin in the cells that develop into sperm or eggs, can be benign or cancerous.",
+          solutions: [
+            "Surgery to remove the tumor.",
+            "Chemotherapy or radiation for malignant tumors.",
+            "Regular monitoring for recurrence.",
+          ],
+        },
+
+        "Glandular fever": {
+          description:
+            "A viral infection causing fatigue, sore throat, and swollen glands, also called mono.",
+          solutions: [
+            "Rest and hydration.",
+            "Pain relief with paracetamol or ibuprofen.",
+            "Avoid contact sports to protect the spleen.",
+          ],
+        },
+
+        "Golfers elbow": {
+          description:
+            "Pain and inflammation where the forearm muscles attach to the elbow, often from overuse.",
+          solutions: [
+            "Rest and ice the area.",
+            "Stretching and strengthening exercises.",
+            "Physical therapy or elbow strap.",
+          ],
+        },
+
+        Gonorrhoea: {
+          description:
+            "A common sexually transmitted infection caused by bacteria.",
+          solutions: [
+            "Antibiotics prescribed by a doctor.",
+            "Inform and treat sexual partners.",
+            "Use condoms to prevent reinfection.",
+          ],
+        },
+
+        Gout: {
+          description:
+            "A type of arthritis caused by uric acid buildup, leading to joint pain and swelling.",
+          solutions: [
+            "Medications to lower uric acid.",
+            "Avoid alcohol and purine-rich foods.",
+            "Stay hydrated and manage weight.",
+          ],
+        },
+
+        "Greater trochanteric pain syndrome": {
+          description:
+            "Pain on the outer hip, often caused by inflammation of tendons or bursae.",
+          solutions: [
+            "Rest and anti-inflammatory medication.",
+            "Physiotherapy and strengthening exercises.",
+            "Steroid injections for severe pain.",
+          ],
+        },
+
+        "Gum disease": {
+          description:
+            "Infection and inflammation of the gums, often due to poor oral hygiene.",
+          solutions: [
+            "Brush and floss regularly.",
+            "Professional dental cleaning.",
+            "Use medicated mouthwash or antibiotics if needed.",
+          ],
+        },
+        Haemorrhoids: {
+          description:
+            "Swollen veins in the lower rectum or anus, often causing pain or bleeding.",
+          solutions: [
+            "Increase fiber and water intake.",
+            "Use over-the-counter creams or suppositories.",
+            "Surgery for severe or persistent cases.",
+          ],
+        },
+
+        "Hand, foot and mouth disease": {
+          description:
+            "A viral infection causing sores in the mouth and rashes on the hands and feet, mostly in children.",
+          solutions: [
+            "Keep the child hydrated and rested.",
+            "Use pain relievers for fever or discomfort.",
+            "Practice good hygiene to prevent spread.",
+          ],
+        },
+
+        "Hay fever": {
+          description:
+            "An allergic reaction to pollen causing sneezing, runny nose, and itchy eyes.",
+          solutions: [
+            "Use antihistamines and nasal sprays.",
+            "Avoid outdoor exposure during high pollen times.",
+            "Keep windows closed during allergy season.",
+          ],
+        },
+
+        "Head and neck cancer": {
+          description:
+            "Cancers that develop in the mouth, throat, nose, or related areas.",
+          solutions: [
+            "Treatment may include surgery, radiation, or chemotherapy.",
+            "Avoid tobacco and alcohol.",
+            "Regular screenings for early detection.",
+          ],
+        },
+
+        "Head lice and nits": {
+          description:
+            "Tiny insects that infest the scalp and hair, causing itching.",
+          solutions: [
+            "Use medicated shampoos or lotions.",
+            "Comb out nits with a fine-tooth comb.",
+            "Wash bedding and clothes in hot water.",
+          ],
+        },
+
+        Headaches: {
+          description:
+            "Pain in any region of the head, caused by various factors like tension, migraine, or illness.",
+          solutions: [
+            "Rest and stay hydrated.",
+            "Use pain relievers like paracetamol or ibuprofen.",
+            "Identify and avoid known triggers.",
+          ],
+        },
+
+        "Hearing loss": {
+          description:
+            "Partial or total inability to hear, may be due to age, noise, or infections.",
+          solutions: [
+            "Use hearing aids if recommended.",
+            "Treat underlying infections or wax build-up.",
+            "Protect ears from loud noises.",
+          ],
+        },
+
+        "Heart attack": {
+          description:
+            "A serious condition where blood flow to the heart is blocked, damaging heart muscles.",
+          solutions: [
+            "Call emergency services immediately.",
+            "Administer aspirin if advised.",
+            "Follow long-term heart care plan post-recovery.",
+          ],
+        },
+
+        "Heart block": {
+          description:
+            "A condition where electrical signals in the heart are delayed or blocked.",
+          solutions: [
+            "Use of a pacemaker in serious cases.",
+            "Manage underlying causes like medication or disease.",
+            "Regular ECG monitoring.",
+          ],
+        },
+
+        "Heart disease": {
+          description:
+            "A range of conditions affecting the heart's structure and function.",
+          solutions: [
+            "Lifestyle changes: diet, exercise, no smoking.",
+            "Medications to control blood pressure and cholesterol.",
+            "Medical procedures like stents or surgery if needed.",
+          ],
+        },
+
+        "Heart failure": {
+          description:
+            "A condition where the heart cannot pump blood efficiently.",
+          solutions: [
+            "Medications like diuretics and beta-blockers.",
+            "Limit salt and fluid intake.",
+            "Manage underlying causes such as high blood pressure.",
+          ],
+        },
+
+        "Heart palpitations": {
+          description:
+            "A feeling of rapid, fluttering, or pounding heartbeats.",
+          solutions: [
+            "Avoid caffeine and stress.",
+            "Check for underlying heart issues if persistent.",
+            "Practice relaxation and breathing techniques.",
+          ],
+        },
+
+        "Heatstroke and heat illness": {
+          description:
+            "Conditions caused by excessive heat, leading to dehydration and high body temperature.",
+          solutions: [
+            "Move to a cool place and hydrate.",
+            "Cool the body with wet cloths or fans.",
+            "Seek emergency care if symptoms are severe.",
+          ],
+        },
+
+        "Hepatitis A": {
+          description:
+            "A viral liver infection spread through contaminated food or water.",
+          solutions: [
+            "Rest and hydration.",
+            "Avoid alcohol to reduce liver strain.",
+            "Vaccination for prevention.",
+          ],
+        },
+
+        "Hepatitis B": {
+          description:
+            "A liver infection caused by the hepatitis B virus, often spread through blood or body fluids.",
+          solutions: [
+            "Antiviral medication for chronic cases.",
+            "Regular liver monitoring.",
+            "Vaccination for protection.",
+          ],
+        },
+
+        "Hepatitis C": {
+          description:
+            "A liver infection caused by the hepatitis C virus, often spread through blood contact.",
+          solutions: [
+            "Use of direct-acting antiviral medication.",
+            "Avoid alcohol and monitor liver health.",
+            "Screening and early treatment are important.",
+          ],
+        },
+
+        "Hiatus hernia": {
+          description:
+            "A condition where part of the stomach pushes into the chest through the diaphragm.",
+          solutions: [
+            "Eat smaller meals and avoid lying down after eating.",
+            "Use antacids or acid reducers.",
+            "Surgery in severe or unresponsive cases.",
+          ],
+        },
+
+        "High blood pressure": {
+          description:
+            "A condition where the force of blood against artery walls is consistently too high.",
+          solutions: [
+            "Adopt a low-salt, heart-healthy diet.",
+            "Take prescribed blood pressure medications.",
+            "Exercise regularly and reduce stress.",
+          ],
+        },
+
+        "High cholesterol": {
+          description:
+            "A condition where excess cholesterol builds up in blood vessels, increasing heart disease risk.",
+          solutions: [
+            "Reduce intake of fatty and fried foods.",
+            "Use cholesterol-lowering medications if needed.",
+            "Exercise and maintain a healthy weight.",
+          ],
+        },
+
+        HIV: {
+          description:
+            "A virus that weakens the immune system by attacking white blood cells.",
+          solutions: [
+            "Use antiretroviral therapy (ART).",
+            "Practice safe sex and regular testing.",
+            "Maintain a healthy lifestyle and monitor regularly.",
+          ],
+        },
+
+        Hives: {
+          description:
+            "Itchy, red welts on the skin caused by an allergic reaction or other triggers.",
+          solutions: [
+            "Use antihistamines to reduce itching.",
+            "Avoid known allergens or triggers.",
+            "Seek medical help if hives persist or spread.",
+          ],
+        },
+
+        "Hodgkin lymphoma": {
+          description:
+            "A cancer of the lymphatic system marked by abnormal lymphocyte growth.",
+          solutions: [
+            "Treatment includes chemotherapy and radiation.",
+            "Regular monitoring for recurrence.",
+            "Supportive care for side effects.",
+          ],
+        },
+
+        "Hodgkin lymphoma: Children": {
+          description:
+            "A type of lymphoma affecting children, typically treatable with early intervention.",
+          solutions: [
+            "Combination chemotherapy and radiation therapy.",
+            "Monitor for long-term effects on growth and development.",
+            "Psychosocial support for children and families.",
+          ],
+        },
+
+        "Hodgkin lymphoma: Teenagers and young adults": {
+          description:
+            "A form of cancer in the lymph nodes often seen in young people.",
+          solutions: [
+            "Multimodal treatment including chemo and radiation.",
+            "Support groups and counseling for coping.",
+            "Regular follow-up for recurrence and health effects.",
+          ],
+        },
+
+        "Huntington’s disease": {
+          description:
+            "A genetic disorder causing breakdown of nerve cells in the brain, leading to movement and mental decline.",
+          solutions: [
+            "Supportive therapy to manage symptoms.",
+            "Medications to control movement and mood changes.",
+            "Genetic counseling for families.",
+          ],
+        },
+
+        Hydrocephalus: {
+          description:
+            "A buildup of fluid in the brain cavities, leading to pressure and swelling.",
+          solutions: [
+            "Surgical placement of a shunt to drain fluid.",
+            "Regular monitoring of brain development.",
+            "Therapies to support physical and cognitive skills.",
+          ],
+        },
+
+        Hyperglycaemia: {
+          description:
+            "A condition where blood sugar levels are too high, common in diabetes.",
+          solutions: [
+            "Adjust insulin or medication as advised.",
+            "Stay hydrated and exercise if safe.",
+            "Monitor blood sugar levels regularly.",
+          ],
+        },
+
+        Hyperhidrosis: {
+          description:
+            "Excessive sweating beyond what is needed for temperature regulation.",
+          solutions: [
+            "Use strong antiperspirants.",
+            "Medications or Botox injections.",
+            "Surgery in severe or unresponsive cases.",
+          ],
+        },
+
+        Hypoglycaemia: {
+          description:
+            "Low blood sugar levels, often due to diabetes medication or missed meals.",
+          solutions: [
+            "Eat or drink something sugary immediately.",
+            "Carry glucose tablets or sweets if diabetic.",
+            "Adjust medication and meal timings with doctor’s advice.",
+          ],
+        },
+        Impetigo: {
+          description:
+            "A highly contagious skin infection causing red sores, often around the nose and mouth.",
+          solutions: [
+            "Use prescribed antibiotic creams.",
+            "Keep the affected area clean and covered.",
+            "Avoid sharing towels and close contact.",
+          ],
+        },
+
+        Indigestion: {
+          description:
+            "Discomfort in the upper abdomen after eating, often with bloating or heartburn.",
+          solutions: [
+            "Eat slowly and avoid heavy meals.",
+            "Limit spicy, acidic, or fatty foods.",
+            "Use antacids if necessary.",
+          ],
+        },
+
+        "Ingrown toenail": {
+          description:
+            "A toenail that grows into the surrounding skin, causing pain and swelling.",
+          solutions: [
+            "Soak feet in warm water and keep clean.",
+            "Wear loose-fitting shoes.",
+            "Surgical removal if infection or pain is severe.",
+          ],
+        },
+
+        Infertility: {
+          description:
+            "The inability to conceive after one year of regular unprotected sex.",
+          solutions: [
+            "Consult a fertility specialist for testing.",
+            "Lifestyle changes: healthy weight, no smoking/alcohol.",
+            "Assisted methods like IVF or medication if needed.",
+          ],
+        },
+
+        "Inflammatory bowel disease": {
+          description:
+            "Chronic inflammation of the digestive tract, mainly Crohn’s disease or ulcerative colitis.",
+          solutions: [
+            "Anti-inflammatory or immune-suppressing medications.",
+            "Dietary changes and stress management.",
+            "Surgery in severe cases.",
+          ],
+        },
+
+        "Inherited heart conditions": {
+          description:
+            "Genetic heart disorders passed through families, such as arrhythmias or cardiomyopathies.",
+          solutions: [
+            "Regular heart screening for family members.",
+            "Lifestyle changes and medication.",
+            "Device implantation (e.g. pacemaker) in some cases.",
+          ],
+        },
+
+        Insomnia: {
+          description:
+            "Difficulty falling or staying asleep, affecting daily functioning.",
+          solutions: [
+            "Follow a regular sleep routine.",
+            "Avoid caffeine and screen time before bed.",
+            "Use CBT or relaxation techniques.",
+          ],
+        },
+
+        "Intoeing in children and young people": {
+          description:
+            "When a child's feet point inward while walking, often resolves naturally with growth.",
+          solutions: [
+            "Usually needs no treatment.",
+            "Encourage normal physical activity.",
+            "Consult a specialist if it causes pain or worsens.",
+          ],
+        },
+
+        "Iron deficiency anaemia": {
+          description:
+            "A condition where the body lacks enough iron to produce healthy red blood cells.",
+          solutions: [
+            "Eat iron-rich foods like meat, beans, and spinach.",
+            "Take iron supplements as prescribed.",
+            "Treat underlying causes like bleeding or poor absorption.",
+          ],
+        },
+
+        "Irritable bowel syndrome": {
+          description:
+            "A chronic digestive disorder causing abdominal pain, bloating, and irregular bowel movements.",
+          solutions: [
+            "Adjust diet — try low FODMAP foods.",
+            "Manage stress with therapy or relaxation.",
+            "Use prescribed medications for symptoms.",
+          ],
+        },
+
+        Itching: {
+          description:
+            "An irritating sensation on the skin causing the urge to scratch, can result from various causes.",
+          solutions: [
+            "Apply moisturizing or anti-itch creams.",
+            "Avoid scratching and keep skin cool.",
+            "See a doctor if persistent or severe.",
+          ],
+        },
+
+        "Itchy bottom": {
+          description:
+            "Itching around the anal area, often caused by irritation, infection, or pinworms.",
+          solutions: [
+            "Maintain good hygiene and keep the area dry.",
+            "Use soothing creams or ointments.",
+            "Seek medical treatment if due to worms or other infection.",
+          ],
+        },
+        "Joint hypermobility": {
+          description:
+            "A condition where joints move beyond the normal range, often leading to pain or instability.",
+          solutions: [
+            "Strengthening exercises and physiotherapy.",
+            "Avoid overstretching the joints.",
+            "Use braces or supports if needed.",
+          ],
+        },
+
+        "Kaposi’s sarcoma": {
+          description:
+            "A rare cancer that forms in blood vessels, often linked to weakened immunity (like in HIV).",
+          solutions: [
+            "Antiretroviral therapy if HIV-related.",
+            "Radiation or chemotherapy.",
+            "Monitor for spread or recurrence.",
+          ],
+        },
+
+        "Kidney cancer": {
+          description:
+            "A type of cancer that begins in the kidneys, often found during imaging tests.",
+          solutions: [
+            "Surgical removal of the tumor or kidney.",
+            "Targeted drug therapy for advanced cases.",
+            "Regular follow-ups and imaging scans.",
+          ],
+        },
+
+        "Kidney infection": {
+          description:
+            "A bacterial infection of the kidneys, often causing pain, fever, and urinary symptoms.",
+          solutions: [
+            "Antibiotics prescribed by a doctor.",
+            "Drink plenty of fluids.",
+            "Seek prompt treatment to prevent complications.",
+          ],
+        },
+
+        "Kidney stones": {
+          description:
+            "Hard mineral deposits in the kidneys that can cause severe pain.",
+          solutions: [
+            "Drink lots of water to help pass small stones.",
+            "Pain relief medications.",
+            "Surgical removal or shock wave therapy for large stones.",
+          ],
+        },
+
+        Labyrinthitis: {
+          description:
+            "An inner ear infection causing dizziness, balance problems, and hearing issues.",
+          solutions: [
+            "Rest and avoid sudden head movements.",
+            "Use prescribed anti-nausea or anti-dizziness meds.",
+            "Consult ENT specialist if symptoms persist.",
+          ],
+        },
+
+        "Lactose intolerance": {
+          description:
+            "Inability to digest lactose found in milk, causing bloating, gas, or diarrhea.",
+          solutions: [
+            "Avoid dairy or use lactose-free alternatives.",
+            "Take lactase enzyme supplements.",
+            "Choose calcium-rich non-dairy foods.",
+          ],
+        },
+
+        "Laryngeal cancer": {
+          description:
+            "Cancer that forms in the larynx (voice box), often linked to smoking or alcohol.",
+          solutions: [
+            "Radiation or surgery depending on stage.",
+            "Speech therapy after treatment.",
+            "Avoid tobacco and alcohol.",
+          ],
+        },
+
+        Laryngitis: {
+          description:
+            "Inflammation of the voice box, usually due to infection or overuse.",
+          solutions: [
+            "Rest your voice and drink warm fluids.",
+            "Avoid shouting and irritants like smoke.",
+            "Use throat lozenges and steam inhalation.",
+          ],
+        },
+
+        "Late miscarriage": {
+          description:
+            "Loss of pregnancy between 14 and 24 weeks, often due to health issues or complications.",
+          solutions: [
+            "Medical evaluation to determine cause.",
+            "Emotional support and counseling.",
+            "Monitor future pregnancies more closely.",
+          ],
+        },
+
+        "Leg cramps": {
+          description:
+            "Sudden, painful muscle contractions in the leg, often at night.",
+          solutions: [
+            "Stretch the muscle gently during a cramp.",
+            "Stay hydrated and eat magnesium-rich foods.",
+            "Regular leg exercises to prevent recurrence.",
+          ],
+        },
+
+        "Lichen planus": {
+          description:
+            "An inflammatory condition causing itchy, purple rashes on skin or mouth.",
+          solutions: [
+            "Topical corticosteroids to reduce inflammation.",
+            "Avoid triggers like stress or certain drugs.",
+            "See a dermatologist for proper diagnosis.",
+          ],
+        },
+
+        "Limb girdle muscular dystrophy": {
+          description:
+            "A group of genetic disorders causing muscle weakness in the hips and shoulders.",
+          solutions: [
+            "Physiotherapy to maintain movement.",
+            "Use of mobility aids as needed.",
+            "Genetic counseling and regular monitoring.",
+          ],
+        },
+
+        Lipoedema: {
+          description:
+            "A chronic condition causing excess fat buildup, mostly in the legs and arms, often painful.",
+          solutions: [
+            "Compression garments to reduce swelling.",
+            "Manual lymphatic drainage and massage.",
+            "Liposuction in advanced cases.",
+          ],
+        },
+
+        "Liver cancer": {
+          description:
+            "Cancer that starts in the liver, often linked to hepatitis or cirrhosis.",
+          solutions: [
+            "Surgical removal or liver transplant.",
+            "Targeted therapy or chemotherapy.",
+            "Regular screening if high-risk.",
+          ],
+        },
+
+        "Liver disease": {
+          description:
+            "Damage to the liver from various causes like alcohol, viruses, or fat buildup.",
+          solutions: [
+            "Avoid alcohol and treat underlying causes.",
+            "Use medications as prescribed.",
+            "Monitor liver function through regular tests.",
+          ],
+        },
+
+        "Liver tumours": {
+          description: "Growths in the liver that may be benign or cancerous.",
+          solutions: [
+            "Monitor benign tumors with regular scans.",
+            "Surgical removal or therapy for cancerous growths.",
+            "Lifestyle changes to support liver health.",
+          ],
+        },
+
+        "Long-term effects of COVID-19": {
+          description:
+            "Ongoing symptoms after recovering from COVID-19, also called Long COVID.",
+          solutions: [
+            "Rest and gradual return to normal activity.",
+            "Manage symptoms like fatigue or breathlessness.",
+            "Medical follow-up for persistent issues.",
+          ],
+        },
+
+        "Loss of libido": {
+          description:
+            "Reduced interest in sexual activity, caused by physical or emotional factors.",
+          solutions: [
+            "Address underlying stress, anxiety, or health issues.",
+            "Relationship counseling if needed.",
+            "Hormonal therapy in certain cases.",
+          ],
+        },
+
+        "Low blood pressure": {
+          description:
+            "When blood pressure drops too low, causing dizziness or fainting.",
+          solutions: [
+            "Drink more fluids and eat small frequent meals.",
+            "Stand up slowly from sitting or lying positions.",
+            "Seek medical advice if persistent.",
+          ],
+        },
+
+        "Lung cancer": {
+          description:
+            "A serious disease where cancer forms in the lungs, often linked to smoking.",
+          solutions: [
+            "Surgery, radiation, or chemotherapy based on stage.",
+            "Targeted or immunotherapy for advanced cases.",
+            "Quit smoking and follow up regularly.",
+          ],
+        },
+
+        Lupus: {
+          description:
+            "An autoimmune disease where the body attacks its own tissues, causing widespread inflammation.",
+          solutions: [
+            "Anti-inflammatory and immune-suppressing drugs.",
+            "Protect skin from sunlight.",
+            "Regular checkups for organ monitoring.",
+          ],
+        },
+
+        "Lyme disease": {
+          description:
+            "A bacterial infection spread by tick bites, causing fever, rash, and joint pain.",
+          solutions: [
+            "Antibiotic treatment early in the infection.",
+            "Use insect repellent to prevent bites.",
+            "See a doctor if symptoms persist.",
+          ],
+        },
+
+        Lymphoedema: {
+          description:
+            "Swelling caused by lymph fluid buildup, often after cancer treatment.",
+          solutions: [
+            "Wear compression garments.",
+            "Manual lymphatic drainage (MLD) therapy.",
+            "Exercise and skin care to prevent infections.",
+          ],
+        },
+
+        "Lymphogranuloma venereum": {
+          description:
+            "A rare sexually transmitted infection that affects the lymph nodes.",
+          solutions: [
+            "Antibiotic treatment, usually doxycycline.",
+            "Test and treat sexual partners.",
+            "Safe sex practices to prevent recurrence.",
+          ],
+        },
+        Malaria: {
+          description:
+            "A mosquito-borne disease causing fever, chills, and flu-like symptoms.",
+          solutions: [
+            "Take prescribed antimalarial medications.",
+            "Use insect repellent and bed nets.",
+            "Seek immediate medical attention if symptoms appear.",
+          ],
+        },
+
+        "Malignant brain tumour": {
+          description:
+            "A cancerous growth in the brain that grows rapidly and can spread.",
+          solutions: [
+            "Surgery, chemotherapy, or radiotherapy.",
+            "Supportive care to manage symptoms.",
+            "Regular neurological assessments.",
+          ],
+        },
+
+        Malnutrition: {
+          description:
+            "A condition caused by lack of proper nutrients, affecting body growth and function.",
+          solutions: [
+            "Improve diet with nutrient-rich foods.",
+            "Use supplements if advised by a doctor.",
+            "Treat any underlying health problems.",
+          ],
+        },
+
+        "Managing genital symptoms": {
+          description:
+            "Irritation, pain, or discharge in the genital area, may be due to infection or irritation.",
+          solutions: [
+            "Maintain good hygiene and avoid irritants.",
+            "Get tested for STIs.",
+            "Use doctor-prescribed creams or antibiotics if needed.",
+          ],
+        },
+
+        Measles: {
+          description:
+            "A highly contagious viral infection with fever, cough, and a red skin rash.",
+          solutions: [
+            "Rest, fluids, and fever control.",
+            "Isolation to prevent spreading.",
+            "Vaccination is key to prevention.",
+          ],
+        },
+
+        Meningitis: {
+          description:
+            "Inflammation of the brain and spinal cord membranes, often due to infection.",
+          solutions: [
+            "Seek emergency medical care immediately.",
+            "Antibiotics or antivirals based on cause.",
+            "Vaccinate to prevent bacterial forms.",
+          ],
+        },
+
+        "Meniere’s disease": {
+          description:
+            "A disorder of the inner ear causing vertigo, tinnitus, and hearing loss.",
+          solutions: [
+            "Limit salt and caffeine intake.",
+            "Take prescribed medications for vertigo.",
+            "Surgery in severe or unmanageable cases.",
+          ],
+        },
+
+        Menopause: {
+          description:
+            "The natural end of menstruation, marked by hormonal changes and symptoms like hot flashes.",
+          solutions: [
+            "Hormone replacement therapy (HRT) if needed.",
+            "Stay active and eat a balanced diet.",
+            "Use non-hormonal options for mild symptoms.",
+          ],
+        },
+
+        Mesothelioma: {
+          description:
+            "A rare and aggressive cancer affecting the lining of the lungs or abdomen, often linked to asbestos.",
+          solutions: [
+            "Chemotherapy, radiation, or surgery.",
+            "Palliative care for symptom relief.",
+            "Legal and support resources may help too.",
+          ],
+        },
+
+        "Metacarpal fracture of the hand": {
+          description: "A break in one of the long bones of the hand.",
+          solutions: [
+            "Immobilize with a cast or splint.",
+            "Surgery for displaced fractures.",
+            "Rehabilitation to restore hand function.",
+          ],
+        },
+
+        "Middle ear infection": {
+          description:
+            "An infection in the space behind the eardrum, common in children.",
+          solutions: [
+            "Pain relief and monitoring.",
+            "Antibiotics if infection is bacterial.",
+            "Keep ears dry and follow up if symptoms persist.",
+          ],
+        },
+
+        Migraine: {
+          description:
+            "A recurring headache often with nausea, visual disturbance, or sensitivity to light.",
+          solutions: [
+            "Rest in a dark, quiet room.",
+            "Take migraine-specific medication (e.g., triptans).",
+            "Avoid known triggers like stress or certain foods.",
+          ],
+        },
+
+        "Minor head injury": {
+          description:
+            "A bump or mild trauma to the head without serious damage.",
+          solutions: [
+            "Apply ice and rest.",
+            "Monitor for symptoms like vomiting or confusion.",
+            "Seek medical help if symptoms worsen.",
+          ],
+        },
+
+        Miscarriage: {
+          description: "Loss of pregnancy before 24 weeks of gestation.",
+          solutions: [
+            "Emotional support and rest.",
+            "Medical or surgical care if needed.",
+            "Check for causes if recurrent.",
+          ],
+        },
+
+        "Molar pregnancy": {
+          description:
+            "An abnormal pregnancy with a non-viable fertilized egg forming a mass of cysts.",
+          solutions: [
+            "Removal through dilation and curettage (D&C).",
+            "Monitor hCG levels until they normalize.",
+            "Avoid pregnancy for a few months after.",
+          ],
+        },
+
+        "Motor neurone disease": {
+          description:
+            "A condition where motor nerves progressively stop working, affecting muscle control.",
+          solutions: [
+            "Physical therapy and assistive devices.",
+            "Medications to slow progression and ease symptoms.",
+            "Nutritional and respiratory support as needed.",
+          ],
+        },
+
+        "Mouth cancer": {
+          description: "A cancer that develops in the mouth, lips, or tongue.",
+          solutions: [
+            "Surgery, radiation, or chemotherapy.",
+            "Quit tobacco and alcohol completely.",
+            "Early diagnosis greatly improves outcomes.",
+          ],
+        },
+
+        "Mouth ulcer": {
+          description:
+            "Small painful sores inside the mouth, often caused by irritation or stress.",
+          solutions: [
+            "Avoid spicy or acidic foods.",
+            "Use medicated mouth gels or rinses.",
+            "See a doctor if ulcers are frequent or long-lasting.",
+          ],
+        },
+
+        "Multiple myeloma": {
+          description:
+            "A cancer of plasma cells in the bone marrow affecting immunity and bones.",
+          solutions: [
+            "Chemotherapy, stem cell transplant, or immunotherapy.",
+            "Pain management and bone-strengthening drugs.",
+            "Regular blood and kidney monitoring.",
+          ],
+        },
+
+        "Multiple sclerosis": {
+          description:
+            "An autoimmune disease affecting the brain and spinal cord, leading to various neurological symptoms.",
+          solutions: [
+            "Disease-modifying therapies (DMTs).",
+            "Physical and occupational therapy.",
+            "Support for fatigue and mental health.",
+          ],
+        },
+
+        "Multiple system atrophy": {
+          description:
+            "A rare degenerative neurological disorder affecting movement, balance, and autonomic functions.",
+          solutions: [
+            "Medications for symptom relief.",
+            "Physiotherapy and mobility aids.",
+            "Multidisciplinary care team support.",
+          ],
+        },
+
+        Mumps: {
+          description:
+            "A viral infection causing swelling in the salivary glands, especially near the jaw.",
+          solutions: [
+            "Rest and fluid intake.",
+            "Use cold compresses for swelling.",
+            "Vaccination (MMR) prevents infection.",
+          ],
+        },
+
+        "Munchausen’s syndrome": {
+          description:
+            "A mental disorder where a person fakes illness to gain attention or sympathy.",
+          solutions: [
+            "Psychological therapy is essential.",
+            "Avoid unnecessary medical tests or treatments.",
+            "Long-term mental health care and support.",
+          ],
+        },
+
+        "Muscular dystrophy": {
+          description:
+            "A group of genetic disorders causing progressive muscle weakness and loss of function.",
+          solutions: [
+            "Physical therapy and mobility aids.",
+            "Respiratory and cardiac monitoring.",
+            "Genetic counseling and supportive care.",
+          ],
+        },
+
+        "Myalgic encephalomyelitis / chronic fatigue syndrome": {
+          description:
+            "A long-term illness with severe fatigue, not relieved by rest, and worsened by activity.",
+          solutions: [
+            "Pacing activities to avoid overexertion.",
+            "Cognitive behavioral therapy and gentle exercise.",
+            "Manage symptoms like sleep and pain.",
+          ],
+        },
+
+        "Myasthenia gravis": {
+          description:
+            "A rare condition causing muscle weakness due to nerve signal disruption.",
+          solutions: [
+            "Use of medications like anticholinesterase drugs.",
+            "Plasma exchange or immunotherapy in severe cases.",
+            "Monitor breathing and swallowing abilities.",
+          ],
+        },
+
+        "Myotonic dystrophy": {
+          description:
+            "A type of muscular dystrophy causing prolonged muscle contractions and weakness.",
+          solutions: [
+            "Physical and speech therapy.",
+            "Monitor for heart and breathing issues.",
+            "Genetic counseling and support groups.",
+          ],
+        },
+        "Nasal and sinus cancer": {
+          description:
+            "A rare cancer that starts in the nasal cavity or sinuses, often with nosebleeds or congestion.",
+          solutions: [
+            "Surgery or radiotherapy depending on location and stage.",
+            "Chemotherapy for advanced cases.",
+            "Regular ENT follow-ups post-treatment.",
+          ],
+        },
+
+        "Nasopharyngeal cancer": {
+          description:
+            "A cancer that starts in the upper part of the throat behind the nose.",
+          solutions: [
+            "Radiotherapy is the main treatment.",
+            "Chemotherapy for larger or advanced tumors.",
+            "Avoid smoking and manage side effects with support.",
+          ],
+        },
+
+        "Neck injury": {
+          description:
+            "Damage to muscles, ligaments, or vertebrae in the neck, often from trauma.",
+          solutions: [
+            "Rest and ice to reduce swelling.",
+            "Use a neck brace if prescribed.",
+            "Physical therapy for recovery.",
+          ],
+        },
+
+        "Neck problems": {
+          description:
+            "Common issues include stiffness, pain, or disc problems in the cervical spine.",
+          solutions: [
+            "Gentle stretching and heat application.",
+            "Pain relief medications or physiotherapy.",
+            "See a doctor if symptoms persist or worsen.",
+          ],
+        },
+
+        "Neuroblastoma: Children": {
+          description:
+            "A rare cancer affecting nerve tissue in children, usually under age 5.",
+          solutions: [
+            "Treatment includes surgery, chemotherapy, and sometimes stem cell transplant.",
+            "Frequent monitoring and follow-ups.",
+            "Support for child and family through care teams.",
+          ],
+        },
+
+        "Neuroendocrine tumours": {
+          description:
+            "Rare tumors that start in hormone-producing cells of the body.",
+          solutions: [
+            "Surgery to remove the tumor.",
+            "Hormone therapy or targeted medication.",
+            "Regular scans and monitoring.",
+          ],
+        },
+
+        "Non-alcoholic fatty liver disease": {
+          description:
+            "A condition where fat builds up in the liver not related to alcohol use.",
+          solutions: [
+            "Lose weight through diet and exercise.",
+            "Control blood sugar and cholesterol.",
+            "Avoid alcohol and monitor liver function.",
+          ],
+        },
+
+        "Non-Hodgkin lymphoma": {
+          description: "A group of cancers that affect the lymphatic system.",
+          solutions: [
+            "Chemotherapy or immunotherapy.",
+            "Radiation in some cases.",
+            "Regular scans and follow-up appointments.",
+          ],
+        },
+
+        "Non-Hodgkin lymphoma: Children": {
+          description:
+            "A type of lymphatic cancer in children that can grow quickly but often treatable.",
+          solutions: [
+            "Aggressive chemotherapy with close monitoring.",
+            "Supportive care during treatment.",
+            "Psychological and family support.",
+          ],
+        },
+
+        Norovirus: {
+          description:
+            "A highly contagious virus causing vomiting and diarrhea, often from food or surfaces.",
+          solutions: [
+            "Stay hydrated and rest.",
+            "Clean surfaces with disinfectants.",
+            "Isolate to prevent spread.",
+          ],
+        },
+
+        Nosebleed: {
+          description:
+            "Bleeding from inside the nose, often from dry air or injury.",
+          solutions: [
+            "Lean forward and pinch nose for 10 minutes.",
+            "Avoid blowing nose after bleeding stops.",
+            "Seek help if bleeding is heavy or frequent.",
+          ],
+        },
+
+        Obesity: {
+          description:
+            "A condition of excessive body fat that increases health risks.",
+          solutions: [
+            "Adopt a calorie-controlled, balanced diet.",
+            "Exercise regularly and reduce sedentary time.",
+            "Medical or surgical treatments for severe cases.",
+          ],
+        },
+
+        "Obsessive compulsive disorder": {
+          description:
+            "A mental health condition involving unwanted thoughts and repetitive behaviors.",
+          solutions: [
+            "Cognitive Behavioral Therapy (CBT).",
+            "Medications like SSRIs.",
+            "Support groups and stress management.",
+          ],
+        },
+
+        "Obstructive sleep apnoea": {
+          description:
+            "A condition where breathing stops and starts during sleep due to airway blockage.",
+          solutions: [
+            "Use a CPAP machine during sleep.",
+            "Lose weight if overweight.",
+            "Avoid alcohol and sleeping pills.",
+          ],
+        },
+
+        "Oculopharyngeal muscular dystrophy": {
+          description:
+            "A genetic disorder causing weakness in eye and throat muscles.",
+          solutions: [
+            "Speech and swallowing therapy.",
+            "Surgical intervention for drooping eyelids.",
+            "Nutritional support if swallowing worsens.",
+          ],
+        },
+
+        "Oesophageal cancer": {
+          description:
+            "Cancer of the food pipe, often causing difficulty swallowing.",
+          solutions: [
+            "Surgery, radiotherapy, or chemotherapy.",
+            "Nutritional support if eating is difficult.",
+            "Avoid tobacco, alcohol, and acid reflux triggers.",
+          ],
+        },
+
+        "Oral thrush in adults": {
+          description:
+            "A fungal infection in the mouth causing white patches and soreness.",
+          solutions: [
+            "Antifungal mouth gels or lozenges.",
+            "Maintain good oral hygiene.",
+            "Treat underlying causes like diabetes or denture issues.",
+          ],
+        },
+
+        Osteoarthritis: {
+          description:
+            "A degenerative joint disease causing pain and stiffness.",
+          solutions: [
+            "Use pain relief and anti-inflammatory medication.",
+            "Exercise to strengthen muscles around joints.",
+            "Joint injections or surgery if severe.",
+          ],
+        },
+
+        "Osteoarthritis of the hip": {
+          description: "Wear-and-tear arthritis affecting the hip joint.",
+          solutions: [
+            "Pain relief and physiotherapy.",
+            "Walking aids to reduce joint stress.",
+            "Hip replacement surgery in advanced cases.",
+          ],
+        },
+
+        "Osteoarthritis of the knee": {
+          description:
+            "Degeneration of cartilage in the knee joint, causing pain and stiffness.",
+          solutions: [
+            "Weight management and knee exercises.",
+            "Pain relief or corticosteroid injections.",
+            "Knee replacement surgery if needed.",
+          ],
+        },
+
+        "Osteoarthritis of the thumb": {
+          description:
+            "A type of arthritis affecting the base of the thumb, leading to pain and weakness.",
+          solutions: [
+            "Use thumb splints or braces.",
+            "Anti-inflammatory medication or hand therapy.",
+            "Surgery in severe cases.",
+          ],
+        },
+
+        Osteoporosis: {
+          description:
+            "A condition where bones become weak and brittle, increasing fracture risk.",
+          solutions: [
+            "Take calcium and vitamin D supplements.",
+            "Weight-bearing exercises to strengthen bones.",
+            "Use of bone-strengthening medications if prescribed.",
+          ],
+        },
+
+        Osteosarcoma: {
+          description:
+            "A rare bone cancer, mostly affecting teenagers and young adults.",
+          solutions: [
+            "Chemotherapy and surgery to remove the tumor.",
+            "Regular scans to check for spread.",
+            "Rehabilitation after treatment.",
+          ],
+        },
+
+        "Outer ear infection": {
+          description:
+            "Also known as swimmer’s ear, an infection in the ear canal causing pain and discharge.",
+          solutions: [
+            "Use antibiotic or antifungal ear drops.",
+            "Keep the ear dry and avoid scratching.",
+            "See a doctor if symptoms worsen or persist.",
+          ],
+        },
+
+        "Ovarian cancer": {
+          description:
+            "A cancer that begins in the ovaries, often detected late due to vague symptoms.",
+          solutions: [
+            "Surgery and chemotherapy are main treatments.",
+            "Regular monitoring and scans.",
+            "Report bloating, pain, or irregular periods early.",
+          ],
+        },
+
+        "Ovarian cancer: Teenagers and young adults": {
+          description:
+            "Rare form of ovarian cancer in younger females, may be less aggressive.",
+          solutions: [
+            "Surgical removal and possible chemotherapy.",
+            "Fertility preservation may be considered.",
+            "Long-term monitoring and support.",
+          ],
+        },
+
+        "Ovarian cyst": {
+          description:
+            "Fluid-filled sacs on the ovary, often harmless and common.",
+          solutions: [
+            "Many resolve without treatment.",
+            "Ultrasound monitoring and hormonal treatments.",
+            "Surgery if large, painful, or persistent.",
+          ],
+        },
+
+        "Overactive thyroid": {
+          description:
+            "A condition where the thyroid gland produces too much hormone (hyperthyroidism).",
+          solutions: [
+            "Anti-thyroid medications or radioactive iodine.",
+            "Beta-blockers to manage symptoms.",
+            "Surgery in certain cases.",
+          ],
+        },
+        "Pain in the ball of the foot": {
+  description: "Discomfort or inflammation in the front part of the foot, often due to overuse or pressure.",
+  solutions: [
+    "Use cushioned insoles or pads.",
+    "Wear supportive footwear.",
+    "Rest and ice the area.",
+  ],
+},
+
+"Paget’s disease of the nipple": {
+  description: "A rare type of breast cancer affecting the nipple and surrounding area.",
+  solutions: [
+    "Surgery, usually mastectomy.",
+    "Radiotherapy or hormone therapy.",
+    "Early detection improves outcomes.",
+  ],
+},
+
+"Pancreatic cancer": {
+  description: "A serious cancer starting in the pancreas, often detected late.",
+  solutions: [
+    "Surgery, chemotherapy, or radiation therapy.",
+    "Pain and nutritional management.",
+    "Supportive palliative care in advanced stages.",
+  ],
+},
+
+"Panic disorder": {
+  description: "An anxiety disorder causing sudden, intense episodes of fear or panic.",
+  solutions: [
+    "Cognitive Behavioral Therapy (CBT).",
+    "Anti-anxiety or antidepressant medication.",
+    "Breathing exercises and stress management.",
+  ],
+},
+
+"Parkinson’s disease": {
+  description: "A progressive brain disorder affecting movement, balance, and coordination.",
+  solutions: [
+    "Dopamine-based medications (e.g., levodopa).",
+    "Physiotherapy and occupational therapy.",
+    "Regular exercise and mental health support.",
+  ],
+},
+
+"Patau’s syndrome": {
+  description: "A serious genetic disorder present from birth, involving multiple physical abnormalities.",
+  solutions: [
+    "Supportive care based on individual needs.",
+    "Palliative approach for comfort and quality of life.",
+    "Genetic counseling for families.",
+  ],
+},
+
+"Patellofemoral pain syndrome": {
+  description: "Knee pain around the kneecap, often due to overuse or misalignment.",
+  solutions: [
+    "Rest and ice the knee.",
+    "Strengthening exercises and proper footwear.",
+    "Physiotherapy if pain persists.",
+  ],
+},
+
+"Pelvic inflammatory disease": {
+  description: "An infection of the female reproductive organs, often caused by STIs.",
+  solutions: [
+    "Antibiotics prescribed by a doctor.",
+    "Avoid sex until treatment is completed.",
+    "Seek early treatment to prevent infertility.",
+  ],
+},
+
+"Pelvic organ prolapse": {
+  description: "When pelvic organs drop from their normal position, often after childbirth.",
+  solutions: [
+    "Pelvic floor exercises (Kegels).",
+    "Use of pessary devices.",
+    "Surgery in more severe cases.",
+  ],
+},
+
+"Penile cancer": {
+  description: "A rare cancer affecting the skin or tissues of the penis.",
+  solutions: [
+    "Surgical removal of the tumor.",
+    "Radiotherapy or chemotherapy if advanced.",
+    "Good genital hygiene reduces risk.",
+  ],
+},
+
+"Peripheral neuropathy": {
+  description: "Damage to nerves outside the brain and spinal cord causing pain, tingling, or weakness.",
+  solutions: [
+    "Control underlying conditions like diabetes.",
+    "Use pain-relieving medications.",
+    "Physical therapy to manage symptoms.",
+  ],
+},
+
+"Personality disorder": {
+  description: "A mental condition where patterns of thinking and behavior affect relationships and daily life.",
+  solutions: [
+    "Psychotherapy, especially dialectical or cognitive behavioral therapy.",
+    "Medication for associated symptoms like anxiety or depression.",
+    "Long-term mental health support.",
+  ],
+},
+
+"PIMS": {
+  description: "Paediatric Inflammatory Multisystem Syndrome linked to COVID-19 in children.",
+  solutions: [
+    "Hospital care and monitoring.",
+    "Anti-inflammatory and immune-modulating treatment.",
+    "Follow-up with pediatric specialists.",
+  ],
+},
+
+"Plantar heel pain": {
+  description: "Pain at the bottom of the heel, commonly caused by plantar fasciitis.",
+  solutions: [
+    "Rest, ice, and stretching exercises.",
+    "Supportive shoes or orthotic inserts.",
+    "Physiotherapy or steroid injections if severe.",
+  ],
+},
+
+"Pleurisy": {
+  description: "Inflammation of the lung lining causing sharp chest pain during breathing.",
+  solutions: [
+    "Treat underlying infection or cause.",
+    "Painkillers and anti-inflammatory drugs.",
+    "Rest and avoid exertion.",
+  ],
+},
+
+"Pneumonia": {
+  description: "Infection that inflames air sacs in the lungs, leading to cough, fever, and difficulty breathing.",
+  solutions: [
+    "Antibiotics or antivirals based on cause.",
+    "Rest, fluids, and oxygen therapy if needed.",
+    "Vaccination can help prevent some types.",
+  ],
+},
+
+"Polio": {
+  description: "A viral infection that can cause nerve damage and paralysis.",
+  solutions: [
+    "Polio vaccination is the best prevention.",
+    "Supportive care for paralysis or muscle issues.",
+    "Physiotherapy for rehabilitation.",
+  ],
+},
+
+"Polycystic ovary syndrome": {
+  description: "A hormonal disorder causing irregular periods, excess hair, and ovarian cysts.",
+  solutions: [
+    "Lifestyle changes: diet, weight loss, and exercise.",
+    "Hormonal treatments to regulate periods.",
+    "Manage symptoms like acne or infertility.",
+  ],
+},
+
+"Polymyalgia rheumatica": {
+  description: "Inflammatory disorder causing muscle pain and stiffness, especially in shoulders and hips.",
+  solutions: [
+    "Corticosteroids to reduce inflammation.",
+    "Gradual tapering with medical supervision.",
+    "Physical activity to maintain mobility.",
+  ],
+},
+
+"Post concussion syndrome": {
+  description: "Symptoms like headache, fatigue, and confusion lasting after a head injury.",
+  solutions: [
+    "Rest and avoid screen time or strenuous activity.",
+    "Pain relief and reassurance.",
+    "Consult neurologist if symptoms persist.",
+  ],
+},
+
+"Post polio syndrome": {
+  description: "A condition that affects polio survivors years after recovery, causing new muscle weakness.",
+  solutions: [
+    "Energy-conserving techniques.",
+    "Physiotherapy and assistive devices.",
+    "Regular checkups to monitor progression.",
+  ],
+},
+
+"Popliteal cysts in children and young people": {
+  description: "Fluid-filled swelling behind the knee, also called a Baker’s cyst.",
+  solutions: [
+    "Usually resolves on its own.",
+    "Rest and gentle movement if painful.",
+    "Consult a doctor if swelling persists or worsens.",
+  ],
+},
+
+"Positional talipes in children and young people": {
+  description: "A foot condition in babies where the foot is twisted but flexible.",
+  solutions: [
+    "Gentle stretching exercises.",
+    "Usually improves naturally with growth.",
+    "Referral to physiotherapist if needed.",
+  ],
+},
+
+"Post traumatic stress disorder": {
+  description: "A mental health condition triggered by experiencing or witnessing a traumatic event.",
+  solutions: [
+    "Trauma-focused CBT or EMDR therapy.",
+    "Medications for anxiety or depression.",
+    "Support groups and self-care techniques.",
+  ],
+},
+
+"Postural orthostatic tachycardia syndrome": {
+  description: "A condition causing rapid heartbeat when standing up, along with fatigue and dizziness.",
+  solutions: [
+    "Increase salt and fluid intake.",
+    "Exercise and physical therapy.",
+    "Medications to control heart rate and blood pressure.",
+  ],
+},
+
+"Postnatal depression": {
+  description: "Depression that occurs after childbirth, affecting mood, sleep, and bonding.",
+  solutions: [
+    "Counseling or support groups.",
+    "Antidepressant medication if needed.",
+    "Family support and rest.",
+  ],
+},
+
+"Pregnancy and baby": {
+  description: "The journey of pregnancy, childbirth, and early baby care.",
+  solutions: [
+    "Regular antenatal check-ups.",
+    "Balanced nutrition and prenatal vitamins.",
+    "Postnatal care and baby development monitoring.",
+  ],
+},
+
+"Pressure ulcers": {
+  description: "Injuries to skin and tissue from prolonged pressure, often in immobile individuals.",
+  solutions: [
+    "Regular position changes.",
+    "Use of special mattresses or cushions.",
+    "Keep skin clean and moisturized.",
+  ],
+},
+
+"Progressive supranuclear palsy": {
+  description: "A rare brain disorder causing movement, balance, and eye movement problems.",
+  solutions: [
+    "No cure — treatment focuses on symptom relief.",
+    "Physiotherapy and speech therapy.",
+    "Mobility aids and fall prevention.",
+  ],
+},
+
+"Prostate cancer": {
+  description: "A common cancer in men affecting the prostate gland.",
+  solutions: [
+    "Surgery, radiation, or hormone therapy.",
+    "Active surveillance for slow-growing cases.",
+    "Regular PSA testing for early detection.",
+  ],
+},
+
+"Psoriasis": {
+  description: "A skin condition causing red, scaly patches due to immune overactivity.",
+  solutions: [
+    "Use topical treatments like corticosteroids.",
+    "Phototherapy or systemic drugs for severe cases.",
+    "Keep skin moisturized and avoid triggers.",
+  ],
+},
+
+"Psoriatic arthritis": {
+  description: "A type of arthritis linked with psoriasis, causing joint pain and swelling.",
+  solutions: [
+    "Anti-inflammatory or immunosuppressive medications.",
+    "Exercise to maintain joint flexibility.",
+    "Dermatologist and rheumatologist joint care.",
+  ],
+},
+
+"Psychosis": {
+  description: "A mental health condition involving hallucinations or delusions.",
+  solutions: [
+    "Antipsychotic medications.",
+    "Psychological therapy and community support.",
+    "Early treatment improves recovery chances.",
+  ],
+},
+
+"Psychotic depression": {
+  description: "A severe form of depression with hallucinations or delusions.",
+  solutions: [
+    "Combination of antidepressants and antipsychotics.",
+    "Hospitalization may be needed in acute cases.",
+    "Ongoing psychiatric support.",
+  ],
+},
+
+"Pubic lice": {
+  description: "Tiny insects that infest pubic hair, causing itching and irritation.",
+  solutions: [
+    "Use medicated creams or shampoos (e.g., permethrin).",
+    "Wash clothing and bedding in hot water.",
+    "Avoid close contact until treated.",
+  ],
+},
+
+"Pulmonary hypertension": {
+  description: "High blood pressure in the arteries of the lungs, leading to breathlessness and fatigue.",
+  solutions: [
+    "Medications to relax lung vessels.",
+    "Oxygen therapy and physical activity guidance.",
+    "Specialist care and monitoring.",
+  ],
+},
+
+"Phobias": {
+  description: "An intense, irrational fear of specific objects, situations, or activities.",
+  solutions: [
+    "Gradual exposure therapy (CBT).",
+    "Relaxation and breathing techniques.",
+    "Medication for severe anxiety if needed.",
+  ],
+},"Rare conditions": {
+  description: "Uncommon medical conditions that affect a small percentage of the population.",
+  solutions: [
+    "Seek care from specialists or rare disease centers.",
+    "Join support networks or research programs.",
+    "Genetic counseling and regular monitoring.",
+  ],
+},
+
+"Rare tumours": {
+  description: "Uncommon growths that may be cancerous or benign, often requiring specialist diagnosis.",
+  solutions: [
+    "Specialist referral for treatment planning.",
+    "Surgery, radiotherapy, or chemotherapy depending on type.",
+    "Ongoing follow-up and genetic testing if needed.",
+  ],
+},
+
+"Raynaud’s phenomenon": {
+  description: "A condition causing fingers or toes to change color and feel cold in response to temperature or stress.",
+  solutions: [
+    "Keep hands and feet warm.",
+    "Avoid smoking and stress.",
+    "Medications may be prescribed for severe cases.",
+  ],
+},
+
+"Reactive arthritis": {
+  description: "Joint pain and swelling triggered by an infection elsewhere in the body.",
+  solutions: [
+    "Anti-inflammatory medications.",
+    "Rest and gentle exercises.",
+    "Treat the underlying infection.",
+  ],
+},
+
+"Recurrent miscarriage": {
+  description: "Three or more consecutive pregnancy losses, often requiring investigation.",
+  solutions: [
+    "Consult a fertility specialist.",
+    "Genetic and hormonal testing.",
+    "Supportive care in future pregnancies.",
+  ],
+},
+
+"Restless legs syndrome": {
+  description: "An uncontrollable urge to move the legs, often during rest or at night.",
+  solutions: [
+    "Iron supplements if deficient.",
+    "Medication to calm nerve signals.",
+    "Avoid caffeine and alcohol.",
+  ],
+},
+
+"Respiratory syncytial virus": {
+  description: "A common virus that causes respiratory infections, especially in infants and the elderly.",
+  solutions: [
+    "Supportive care like fluids and rest.",
+    "Hospitalization in severe cases.",
+    "Prevent with good hygiene and vaccines for high-risk groups.",
+  ],
+},
+
+"Retinoblastoma: Children": {
+  description: "A rare eye cancer in children that usually affects those under 5 years old.",
+  solutions: [
+    "Early detection through eye exams.",
+    "Treatment includes chemotherapy, laser therapy, or surgery.",
+    "Genetic testing for family members.",
+  ],
+},
+
+"Rhabdomyosarcoma": {
+  description: "A rare cancer of muscle tissue, mostly affecting children and teens.",
+  solutions: [
+    "Chemotherapy, surgery, and radiation therapy.",
+    "Regular imaging to monitor spread.",
+    "Supportive pediatric oncology care.",
+  ],
+},
+
+"Rheumatoid arthritis": {
+  description: "An autoimmune condition causing joint inflammation, pain, and damage.",
+  solutions: [
+    "Disease-modifying medications (DMARDs).",
+    "Physiotherapy and joint protection techniques.",
+    "Monitor for flares and manage symptoms.",
+  ],
+},
+
+"Ringworm and other fungal infections": {
+  description: "Common fungal skin infections causing redness, itch, or circular rashes.",
+  solutions: [
+    "Use antifungal creams or oral medications.",
+    "Keep skin clean and dry.",
+    "Avoid sharing personal items.",
+  ],
+},
+
+"Rosacea": {
+  description: "A skin condition causing redness and visible blood vessels on the face.",
+  solutions: [
+    "Avoid triggers like spicy food and alcohol.",
+    "Use prescribed creams or antibiotics.",
+    "Protect skin from sunlight.",
+  ],
+},
+
+"Scabies": {
+  description: "A skin infestation caused by tiny mites, leading to intense itching.",
+  solutions: [
+    "Use prescribed creams (e.g., permethrin).",
+    "Wash bedding and clothes thoroughly.",
+    "Treat all close contacts.",
+  ],
+},
+
+"Scarlet fever": {
+  description: "A bacterial illness causing sore throat, fever, and a red rash.",
+  solutions: [
+    "Antibiotic treatment (e.g., penicillin).",
+    "Rest, fluids, and fever relief.",
+    "Avoid contact with others during infection.",
+  ],
+},
+
+"Schizophrenia": {
+  description: "A mental illness involving hallucinations, delusions, and disordered thinking.",
+  solutions: [
+    "Antipsychotic medications.",
+    "Therapy and community mental health support.",
+    "Family education and rehabilitation programs.",
+  ],
+},
+
+"Sciatica": {
+  description: "Pain radiating along the sciatic nerve, usually from lower back down the leg.",
+  solutions: [
+    "Pain relief and gentle stretching.",
+    "Physiotherapy or posture correction.",
+    "Surgery in rare severe cases.",
+  ],
+},
+
+"About scoliosis": {
+  description: "A sideways curve of the spine, often developing in childhood.",
+  solutions: [
+    "Monitoring for progression with X-rays.",
+    "Bracing for growing children.",
+    "Surgery if curvature becomes severe.",
+  ],
+},
+
+"Seasonal affective disorder": {
+  description: "A type of depression that occurs during specific seasons, usually winter.",
+  solutions: [
+    "Light therapy (SAD lamp).",
+    "Antidepressants or counseling.",
+    "Stay active and get outside in daylight.",
+  ],
+},
+
+"Sepsis": {
+  description: "A life-threatening response to infection that can lead to organ failure.",
+  solutions: [
+    "Immediate emergency treatment with antibiotics.",
+    "Fluids and organ support in hospital.",
+    "Early recognition saves lives.",
+  ],
+},
+
+"Septic shock": {
+  description: "A severe and advanced stage of sepsis causing dangerously low blood pressure.",
+  solutions: [
+    "Emergency ICU care and IV antibiotics.",
+    "Support for breathing and circulation.",
+    "Aggressive fluid and medication therapy.",
+  ],
+},
+
+"Severe head injury": {
+  description: "Trauma to the head causing brain damage, bleeding, or loss of consciousness.",
+  solutions: [
+    "Emergency assessment and imaging (CT scan).",
+    "Surgery if bleeding or swelling is present.",
+    "Rehabilitation for long-term effects.",
+  ],
+},
+
+"Shingles": {
+  description: "A painful rash caused by reactivation of the chickenpox virus (herpes zoster).",
+  solutions: [
+    "Antiviral medications within 72 hours.",
+    "Pain relief and skin care.",
+    "Vaccination for prevention.",
+  ],
+},
+
+"Shortness of breath": {
+  description: "Difficulty breathing, can result from heart, lung, or anxiety conditions.",
+  solutions: [
+    "Identify and treat the underlying cause.",
+    "Use inhalers or oxygen therapy if needed.",
+    "Seek urgent help if sudden or severe.",
+  ],
+},
+
+"Sickle cell disease": {
+  description: "A genetic blood disorder causing misshapen red cells and pain crises.",
+  solutions: [
+    "Hydration, pain relief, and rest during crises.",
+    "Prevent infections with vaccines and antibiotics.",
+    "Bone marrow transplant in some cases.",
+  ],
+},
+
+"Sinusitis": {
+  description: "Inflammation or infection of the sinuses causing facial pressure and congestion.",
+  solutions: [
+    "Nasal sprays and decongestants.",
+    "Antibiotics if bacterial.",
+    "Steam inhalation and fluids.",
+  ],
+},
+
+"Sjögren’s syndrome": {
+  description: "An autoimmune disease causing dry eyes and mouth.",
+  solutions: [
+    "Use artificial tears and saliva substitutes.",
+    "Immunosuppressive medication if severe.",
+    "Regular dental and eye check-ups.",
+  ],
+},
+
+"Skin cancer": {
+  description: "Abnormal growth of skin cells, often from sun exposure.",
+  solutions: [
+    "Surgical removal of affected skin.",
+    "Cryotherapy or topical treatments.",
+    "Protect skin with sunscreen and avoid tanning.",
+  ],
+},
+
+"Skin light sensitivity": {
+  description: "Increased skin sensitivity to sunlight, causing rashes or burns.",
+  solutions: [
+    "Avoid direct sunlight and wear protective clothing.",
+    "Use broad-spectrum sunscreen.",
+    "Identify medications or conditions causing sensitivity.",
+  ],
+},
+
+"Skin rashes in children": {
+  description: "Red or itchy patches that may result from infections, allergies, or heat.",
+  solutions: [
+    "Keep skin clean and dry.",
+    "Use appropriate creams or antihistamines.",
+    "Consult a doctor if rash worsens or spreads.",
+  ],
+},
+
+"Slapped cheek syndrome": {
+  description: "A viral infection in children causing red cheeks and mild flu-like symptoms.",
+  solutions: [
+    "Rest, fluids, and fever relief.",
+    "Usually resolves on its own.",
+    "Avoid contact with pregnant women during infection.",
+  ],
+},
+
+"Social anxiety disorder": {
+  description: "An intense fear of being judged or embarrassed in social settings.",
+  solutions: [
+    "Cognitive behavioral therapy (CBT).",
+    "Social skills training and gradual exposure.",
+    "Medication if needed.",
+  ],
+},
+
+"Soft tissue sarcomas": {
+  description: "Rare cancers affecting muscles, fat, or connective tissues.",
+  solutions: [
+    "Surgery to remove the tumor.",
+    "Radiotherapy or chemotherapy if necessary.",
+    "Ongoing specialist follow-up.",
+  ],
+},
+
+"Soft tissue sarcomas: Teenagers and young adults": {
+  description: "Uncommon cancers in soft tissues, often needing aggressive treatment.",
+  solutions: [
+    "Early diagnosis with imaging and biopsy.",
+    "Combination of surgery and chemotherapy.",
+    "Support from a teenage/young adult cancer team.",
+  ],
+},
+
+"Sore throat": {
+  description: "Pain or irritation in the throat, often from viral or bacterial infections.",
+  solutions: [
+    "Rest, fluids, and throat lozenges.",
+    "Antibiotics only if bacterial (e.g., strep throat).",
+    "Avoid irritants like smoke or cold air.",
+  ],
+},
+
+"Spina bifida": {
+  description: "A birth defect where the spine doesn't form properly, affecting mobility and nerves.",
+  solutions: [
+    "Surgery may be needed early in life.",
+    "Lifelong support from neurology and physical therapy.",
+    "Folic acid during pregnancy can reduce risk.",
+  ],
+},
+
+"Spinal stenosis": {
+  description: "Narrowing of the spinal canal, often causing back pain and leg weakness.",
+  solutions: [
+    "Pain relief and physical therapy.",
+    "Steroid injections or surgery in severe cases.",
+    "Exercise to strengthen core muscles.",
+  ],
+},
+
+"Spleen problems and spleen removal": {
+  description: "Enlarged or damaged spleen may require monitoring or surgical removal.",
+  solutions: [
+    "Vaccines after spleen removal to prevent infection.",
+    "Monitor for signs of bleeding or infection.",
+    "Avoid contact sports after surgery.",
+  ],
+},
+
+"Stillbirth": {
+  description: "Loss of a baby after 24 weeks of pregnancy.",
+  solutions: [
+    "Emotional and psychological support.",
+    "Medical review to understand the cause.",
+    "Support in future pregnancies.",
+  ],
+},
+
+"Stomach ache and abdominal pain": {
+  description: "Pain in the stomach or belly can have many causes, from gas to serious illness.",
+  solutions: [
+    "Rest and hydration for mild cases.",
+    "Seek help if pain is severe or ongoing.",
+    "Identify cause via medical evaluation.",
+  ],
+},
+
+"Stomach cancer": {
+  description: "A cancer that starts in the stomach lining, often diagnosed late.",
+  solutions: [
+    "Surgery, chemotherapy, or radiation therapy.",
+    "Nutritional support and pain management.",
+    "Regular monitoring and early intervention.",
+  ],
+},
+
+"Stomach ulcer": {
+  description: "Open sores in the stomach lining, often from H. pylori infection or NSAIDs.",
+  solutions: [
+    "Use proton-pump inhibitors (PPIs).",
+    "Avoid spicy foods, alcohol, and smoking.",
+    "Antibiotics if H. pylori is present.",
+  ],
+},
+
+"Streptococcus A": {
+  description: "A bacterial infection causing sore throat, scarlet fever, or skin infections.",
+  solutions: [
+    "Antibiotic treatment (e.g., penicillin).",
+    "Rest and fluids.",
+    "Prevent spread with hygiene and early treatment.",
+  ],
+},
+
+"Stress, anxiety and low mood": {
+  description: "Emotional states that affect daily life and wellbeing.",
+  solutions: [
+    "Exercise, sleep, and healthy lifestyle.",
+    "Talk therapy or counseling.",
+    "Medication for moderate to severe symptoms.",
+  ],
+},
+
+"Stroke": {
+  description: "A medical emergency caused by blocked or bleeding brain blood vessels.",
+  solutions: [
+    "Emergency treatment to restore blood flow.",
+    "Rehabilitation to regain functions.",
+    "Prevent future strokes with medication and lifestyle change.",
+  ],
+},
+
+"Subacromial pain syndrome": {
+  description: "Shoulder pain caused by impingement or tendon inflammation.",
+  solutions: [
+    "Physiotherapy and posture correction.",
+    "Pain relief medications.",
+    "Steroid injections or surgery if needed.",
+  ],
+},
+
+"Sudden infant death syndrome": {
+  description: "The sudden, unexplained death of a healthy baby, usually during sleep.",
+  solutions: [
+    "Lay babies on their back to sleep.",
+    "Avoid soft bedding and overheating.",
+    "Use a firm, flat sleep surface.",
+  ],
+},
+
+"Suicide": {
+  description: "Taking one’s own life, often linked to mental health struggles.",
+  solutions: [
+    "Seek immediate help and crisis support.",
+    "Therapy and medication for mental health conditions.",
+    "Support from friends, family, and helplines.",
+  ],
+},
+
+"Sunbed and tanning safety": {
+  description: "Using sunbeds increases skin cancer risk due to UV exposure.",
+  solutions: [
+    "Avoid sunbeds entirely.",
+    "Use SPF and sun protection outside.",
+    "Get regular skin checks for suspicious moles.",
+  ],
+},
+
+"Sunburn": {
+  description: "Red, painful skin caused by overexposure to UV radiation.",
+  solutions: [
+    "Cool the skin with damp cloths or aloe vera.",
+    "Hydrate and avoid further sun exposure.",
+    "Use sunscreen to prevent future burns.",
+  ],
+},
+
+"Supraventricular tachycardia": {
+  description: "An abnormally fast heart rhythm originating above the heart's ventricles.",
+  solutions: [
+    "Try vagal maneuvers like coughing or bearing down.",
+    "Medication or ablation therapy if recurrent.",
+    "See a cardiologist for evaluation.",
+  ],
+},
+
+"Swollen glands": {
+  description: "Enlarged lymph nodes, often due to infection or inflammation.",
+  solutions: [
+    "Rest and treat underlying infection.",
+    "See a doctor if swelling is persistent or painful.",
+    "Monitor for fever or other symptoms.",
+  ],
+},
+
+"Syphilis": {
+  description: "A bacterial STI that progresses through stages if untreated.",
+  solutions: [
+    "Antibiotic treatment (usually penicillin).",
+    "Avoid sexual contact until cured.",
+    "Test sexual partners and use protection.",
+  ],
+},
+
+"Self-harm": {
+  description: "Deliberately hurting oneself to cope with emotional pain.",
+  solutions: [
+    "Seek mental health support immediately.",
+    "Use alternative coping strategies.",
+    "Therapy and support groups can help long-term.",
+  ],
+},"Tennis elbow": {
+  description: "Pain and inflammation on the outer part of the elbow due to overuse of arm muscles.",
+  solutions: [
+    "Rest the arm and avoid repetitive movements.",
+    "Use pain relievers and elbow support.",
+    "Physiotherapy for strengthening exercises.",
+  ],
+},
+
+"Testicular cancer": {
+  description: "A rare cancer affecting the testicles, usually in younger men.",
+  solutions: [
+    "Surgical removal of the affected testicle.",
+    "Chemotherapy or radiotherapy if needed.",
+    "Regular self-examination for early detection.",
+  ],
+},
+
+"Testicular cancer: Teenagers and young adults": {
+  description: "A form of testicular cancer occurring in younger males, often with high recovery rates.",
+  solutions: [
+    "Early diagnosis through ultrasound.",
+    "Surgical treatment followed by monitoring.",
+    "Support from youth cancer services.",
+  ],
+},
+
+"Testicular lumps and swellings": {
+  description: "Lumps in the testicles may be harmless or a sign of infection or cancer.",
+  solutions: [
+    "Seek medical evaluation for any lump.",
+    "Treat infections with antibiotics.",
+    "Ultrasound to rule out serious causes.",
+  ],
+},
+
+"Thirst": {
+  description: "A common sign of dehydration or underlying conditions like diabetes.",
+  solutions: [
+    "Drink adequate water daily.",
+    "Check for symptoms like frequent urination.",
+    "Consult a doctor if excessive or persistent.",
+  ],
+},
+
+"Threadworms": {
+  description: "Tiny white worms that infect the intestines, common in children.",
+  solutions: [
+    "Take antiparasitic medication.",
+    "Wash hands and bedding thoroughly.",
+    "Treat all family members to prevent spread.",
+  ],
+},
+
+"Thrush": {
+  description: "A fungal infection causing itching and white discharge, often in the mouth or genitals.",
+  solutions: [
+    "Use antifungal creams or oral medication.",
+    "Maintain good hygiene and avoid irritants.",
+    "Consult a doctor if recurrent.",
+  ],
+},
+
+"Thumb fracture": {
+  description: "A break in one of the thumb bones, often from trauma or falls.",
+  solutions: [
+    "Immobilize with a splint or cast.",
+    "Pain management and rest.",
+    "Surgery if bone is misaligned.",
+  ],
+},
+
+"Thyroid cancer": {
+  description: "A cancer starting in the thyroid gland, usually slow-growing.",
+  solutions: [
+    "Surgery to remove the thyroid.",
+    "Radioactive iodine therapy.",
+    "Regular hormone replacement and monitoring.",
+  ],
+},
+
+"Thyroid cancer: Teenagers and young adults": {
+  description: "Rare thyroid cancers affecting young people, often with good outcomes.",
+  solutions: [
+    "Thyroid surgery and iodine treatment.",
+    "Follow-up with hormone therapy.",
+    "Long-term monitoring.",
+  ],
+},
+
+"Tick bites": {
+  description: "Bites from ticks can cause skin irritation or transmit diseases like Lyme disease.",
+  solutions: [
+    "Remove tick safely with tweezers.",
+    "Clean bite area with antiseptic.",
+    "Watch for signs of infection or rash.",
+  ],
+},
+
+"Tinnitus": {
+  description: "A ringing or buzzing in the ears not caused by an external source.",
+  solutions: [
+    "Avoid loud noise exposure.",
+    "Hearing aids or sound therapy.",
+    "Stress management and ENT evaluation.",
+  ],
+},
+
+"Tonsillitis": {
+  description: "Inflammation of the tonsils, usually caused by a viral or bacterial infection.",
+  solutions: [
+    "Rest and fluids.",
+    "Antibiotics if bacterial.",
+    "Surgery in frequent or severe cases.",
+  ],
+},
+
+"Tooth decay": {
+  description: "Damage to tooth enamel from acids produced by bacteria.",
+  solutions: [
+    "Brush teeth twice daily with fluoride toothpaste.",
+    "Reduce sugary foods and drinks.",
+    "Visit a dentist for fillings or cleaning.",
+  ],
+},
+
+"Toothache": {
+  description: "Pain in or around a tooth due to decay, infection, or injury.",
+  solutions: [
+    "Painkillers and saltwater rinse.",
+    "Visit a dentist to find the cause.",
+    "Avoid hot or cold foods if sensitive.",
+  ],
+},
+
+"Tourette’s syndrome": {
+  description: "A neurological condition causing involuntary tics or sounds.",
+  solutions: [
+    "Behavioral therapy and habit reversal training.",
+    "Medications for severe tics.",
+    "Support for children at school.",
+  ],
+},
+
+"Transient ischaemic attack": {
+  description: "A brief stroke-like episode that resolves within minutes or hours.",
+  solutions: [
+    "Seek urgent medical attention.",
+    "Start preventive medication (e.g., aspirin).",
+    "Manage risk factors like blood pressure.",
+  ],
+},
+
+"Transverse myelitis": {
+  description: "Inflammation of the spinal cord causing weakness or numbness.",
+  solutions: [
+    "Steroids or immune therapy.",
+    "Rehabilitation with physiotherapy.",
+    "Monitor long-term neurological effects.",
+  ],
+},
+
+"Trichomonas infection": {
+  description: "A sexually transmitted infection caused by a parasite, leading to discharge and irritation.",
+  solutions: [
+    "Take prescribed antibiotics (e.g., metronidazole).",
+    "Avoid sex until fully treated.",
+    "Test and treat partners too.",
+  ],
+},
+
+"Trigeminal neuralgia": {
+  description: "Sudden, severe facial pain due to nerve irritation.",
+  solutions: [
+    "Medications like carbamazepine.",
+    "Surgery or nerve block if persistent.",
+    "Avoid triggers like cold air or brushing.",
+  ],
+},
+
+"Trigger thumb or finger in children and young people": {
+  description: "A condition where a finger or thumb gets stuck in a bent position.",
+  solutions: [
+    "Stretching and splinting.",
+    "Minor surgery if not resolved.",
+    "Usually painless and treatable.",
+  ],
+},
+
+"Tuberculosis": {
+  description: "A bacterial infection that mainly affects the lungs but can affect other organs.",
+  solutions: [
+    "Long-term antibiotic treatment (usually 6 months).",
+    "Isolate during active infection.",
+    "Regular follow-up to ensure cure.",
+  ],
+},
+
+"Type 1 diabetes": {
+  description: "A condition where the pancreas produces little or no insulin.",
+  solutions: [
+    "Daily insulin injections or pump.",
+    "Monitor blood sugar levels regularly.",
+    "Balanced diet and exercise routine.",
+  ],
+},
+
+"Type 2 diabetes": {
+  description: "A chronic condition where the body becomes resistant to insulin.",
+  solutions: [
+    "Healthy diet and regular exercise.",
+    "Blood sugar-lowering medications.",
+    "Regular health check-ups.",
+  ],
+},
+
+"Ulcerative colitis": {
+  description: "A long-term condition causing inflammation in the colon and rectum.",
+  solutions: [
+    "Anti-inflammatory or immune-suppressing medications.",
+    "Monitor symptoms and diet.",
+    "Surgery in severe cases.",
+  ],
+},
+
+"Underactive thyroid": {
+  description: "A condition where the thyroid gland doesn't produce enough hormones.",
+  solutions: [
+    "Take daily thyroid hormone replacement (levothyroxine).",
+    "Regular blood tests to monitor levels.",
+    "Manage symptoms like fatigue and weight gain.",
+  ],
+},
+
+"Urinary incontinence": {
+  description: "Loss of bladder control leading to accidental leakage of urine.",
+  solutions: [
+    "Pelvic floor exercises (Kegels).",
+    "Bladder training and fluid management.",
+    "Medications or surgery if needed.",
+  ],
+},
+
+"Urinary incontinence in women": {
+  description: "Leakage of urine in women, often due to childbirth or menopause.",
+  solutions: [
+    "Strengthen pelvic floor muscles.",
+    "Use incontinence pads if needed.",
+    "Medical treatments available for persistent cases.",
+  ],
+},
+
+"Urinary tract infection": {
+  description: "An infection of the urinary system, causing pain or frequent urination.",
+  solutions: [
+    "Antibiotics to clear the infection.",
+    "Drink plenty of water.",
+    "Practice good hygiene to prevent recurrence.",
+  ],
+},
+
+"Urinary tract infection in children": {
+  description: "UTIs in children cause fever, irritability, or bedwetting.",
+  solutions: [
+    "Antibiotic treatment after diagnosis.",
+    "Encourage fluid intake.",
+    "Monitor for recurrence or kidney issues.",
+  ],
+},
+
+"Urticaria": {
+  description: "A skin reaction causing red, itchy welts (also called hives).",
+  solutions: [
+    "Take antihistamines to reduce itching.",
+    "Avoid known triggers (foods, medications).",
+    "See a doctor if symptoms persist.",
+  ],
+},
+
+"Vaginal cancer": {
+  description: "A rare cancer affecting the vagina, usually in older women.",
+  solutions: [
+    "Surgery, radiation, or chemotherapy.",
+    "Regular pelvic exams for detection.",
+    "Follow-up for long-term care.",
+  ],
+},
+
+"Vaginal discharge": {
+  description: "A normal bodily function, though changes in color or odor may signal infection.",
+  solutions: [
+    "Maintain good hygiene.",
+    "Consult doctor if discharge is abnormal.",
+    "Treat infections like thrush or STIs.",
+  ],
+},
+
+"Varicose eczema": {
+  description: "A skin condition caused by poor circulation, leading to itching and dryness.",
+  solutions: [
+    "Use moisturizers and steroid creams.",
+    "Wear compression stockings.",
+    "Treat underlying varicose veins.",
+  ],
+},
+
+"Varicose veins": {
+  description: "Enlarged, twisted veins often seen in the legs due to weak valves.",
+  solutions: [
+    "Use compression stockings.",
+    "Avoid standing for long periods.",
+    "Surgery or laser treatment in severe cases.",
+  ],
+},
+
+"Vascular dementia": {
+  description: "Memory loss caused by reduced blood flow to the brain.",
+  solutions: [
+    "Control risk factors (blood pressure, diabetes).",
+    "Support with memory aids and routines.",
+    "Medication may help slow progression.",
+  ],
+},
+
+"Venous leg ulcer": {
+  description: "Slow-healing sores on the legs caused by poor blood flow.",
+  solutions: [
+    "Use compression bandages or stockings.",
+    "Clean and dress the wound regularly.",
+    "Treat underlying vein issues.",
+  ],
+},
+
+"Vertigo": {
+  description: "A spinning sensation, often due to inner ear problems.",
+  solutions: [
+    "Vestibular exercises or balance therapy.",
+    "Medications for severe dizziness.",
+    "Treat the cause (e.g., ear infection).",
+  ],
+},
+
+"Vitamin B12 or folate deficiency anaemia": {
+  description: "A lack of B12 or folate causing tiredness, weakness, and pale skin.",
+  solutions: [
+    "Vitamin supplements (oral or injections).",
+    "Increase intake through diet.",
+    "Treat underlying causes like absorption issues.",
+  ],
+},
+
+"Vomiting in adults": {
+  description: "The forceful expulsion of stomach contents, often from infection or irritation.",
+  solutions: [
+    "Stay hydrated with small sips of water.",
+    "Rest the stomach and avoid solid food initially.",
+    "Seek medical help if persistent or severe.",
+  ],
+},
+
+"Vomiting in children and babies": {
+  description: "Commonly caused by infections or feeding issues.",
+  solutions: [
+    "Offer small amounts of fluid frequently.",
+    "Watch for dehydration (dry mouth, no tears).",
+    "Consult a doctor if vomiting continues.",
+  ],
+},
+
+"Vulval cancer": {
+  description: "A rare cancer affecting the outer parts of the female genitalia.",
+  solutions: [
+    "Surgery is the main treatment.",
+    "Radiotherapy or chemotherapy in advanced cases.",
+    "Early detection improves outcome.",
+  ],
+},
+
+"Warts and verrucas": {
+  description: "Small growths caused by human papillomavirus (HPV), often on hands or feet.",
+  solutions: [
+    "Use over-the-counter wart treatments.",
+    "Cryotherapy or minor surgery for stubborn cases.",
+    "Avoid sharing towels or shoes.",
+  ],
+},
+
+"Whiplash": {
+  description: "Neck strain from sudden movement, often after a car accident.",
+  solutions: [
+    "Rest and gentle neck exercises.",
+    "Pain relief with anti-inflammatory meds.",
+    "Physiotherapy if needed.",
+  ],
+},
+
+"Whooping cough": {
+  description: "A contagious bacterial infection causing intense coughing fits.",
+  solutions: [
+    "Antibiotics to reduce spread.",
+    "Vaccination for prevention.",
+    "Rest and supportive care.",
+  ],
+},
+
+"Wilms tumour": {
+  description: "A kidney cancer in children, often detected as an abdominal lump.",
+  solutions: [
+    "Surgery followed by chemotherapy.",
+    "Regular monitoring for recurrence.",
+    "Family support during treatment.",
+  ],
+},
+
+"Wolff-Parkinson-White syndrome": {
+  description: "A heart condition causing episodes of rapid heartbeat due to an extra electrical pathway.",
+  solutions: [
+    "Medications to control heart rhythm.",
+    "Ablation therapy to remove extra pathway.",
+    "Monitoring with ECG or Holter test.",
+  ],
+},
+
+"Womb cancer": {
+  description: "A cancer of the uterus lining, common after menopause.",
+  solutions: [
+    "Surgical removal of uterus (hysterectomy).",
+    "Radiotherapy or hormone therapy.",
+    "Regular pelvic exams for early detection.",
+  ],
+},
+
+"Wrist fracture": {
+  description: "A break in one or more wrist bones from a fall or trauma.",
+  solutions: [
+    "Immobilization with a cast or splint.",
+    "Pain management and follow-up X-rays.",
+    "Surgery if bones are displaced.",
+  ],
+},
+
+"Yellow fever": {
+  description: "A viral infection spread by mosquitoes, causing fever and jaundice.",
+  solutions: [
+    "Prevent with vaccination before travel.",
+    "Supportive care for symptoms.",
+    "Avoid mosquito bites in risk areas.",
+  ],
+},"Zika virus": {
+  description: "A virus spread primarily by mosquitoes, often causing mild symptoms but can lead to birth defects during pregnancy.",
+  solutions: [
+    "Avoid mosquito bites using repellent and nets.",
+    "Rest, stay hydrated, and take pain relievers like paracetamol.",
+    "Pregnant women should avoid traveling to outbreak areas.",
+  ],
+}
+ };
+
+      const diseaseMap = {};
+      for (const key in diseaseData) {
+        diseaseMap[key.toLowerCase()] = key;
+      }
+
+      // Add more diseases here...
+
+      // Search Function
+      function handleSearch(event) {
+        event.preventDefault();
+        const input = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+        const resultBox = document.getElementById("resultBox");
+        const diseaseDetailSection = document.getElementById(
+          "diseaseDetailSection"
+        );
+        const diseaseTitle = document.getElementById("diseaseTitle");
+        const diseaseDescription =
+          document.getElementById("diseaseDescription");
+        const diseaseSolutions = document.getElementById("diseaseSolutions");
+
+        resultBox.innerHTML = "";
+        diseaseDetailSection.classList.add("hidden");
+
+        const matchedKey = diseaseMap[input]; // Get actual key from map
+
+        if (matchedKey && diseaseData[matchedKey]) {
+          const data = diseaseData[matchedKey];
+
+          diseaseTitle.textContent = matchedKey;
+          diseaseDescription.textContent = data.description;
+
+          diseaseSolutions.innerHTML = "";
+          data.solutions.forEach((solution) => {
+            const li = document.createElement("li");
+            li.textContent = solution;
+            diseaseSolutions.appendChild(li);
+          }); 
+
+          diseaseDetailSection.classList.remove("hidden");
+        } else {
+          resultBox.innerHTML = `<span class="text-red-400">No information found for "${input}".</span>`;
+        }
+      }
+      function showDiseaseDetail(diseaseKey) {
+  const resultBox = document.getElementById("resultBox");
+  const diseaseDetailSection = document.getElementById("diseaseDetailSection");
+  const diseaseTitle = document.getElementById("diseaseTitle");
+  const diseaseDescription = document.getElementById("diseaseDescription");
+  const diseaseSolutions = document.getElementById("diseaseSolutions");
+
+  resultBox.innerHTML = "";
+  diseaseDetailSection.classList.add("hidden");
+
+  const matchedKey = diseaseMap[diseaseKey.toLowerCase()];
+
+  if (matchedKey && diseaseData[matchedKey]) {
+    const data = diseaseData[matchedKey];
+
+    diseaseTitle.textContent = matchedKey;
+    diseaseDescription.textContent = data.description;
+
+    diseaseSolutions.innerHTML = "";
+    data.solutions.forEach((solution) => {
+      const li = document.createElement("li");
+      li.textContent = solution;
+      diseaseSolutions.appendChild(li);
+    });
+
+    diseaseDetailSection.classList.remove("hidden");
+  } else {
+    resultBox.innerHTML = `<span class="text-red-400">No information found for "${diseaseKey}".</span>`;
+  }
+}
+
+
+      // Hide Section Function
+      function hideDiseaseDetail() {
+        const diseaseDetailSection = document.getElementById(
+          "diseaseDetailSection"
+        );
+        diseaseDetailSection.classList.add("hidden");
+        document.getElementById("searchInput").value = "";
+        document.getElementById("resultBox").innerHTML = "";
+      }
+<!-- Firebase SDKs -->
+
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+window.onclick = function (event) {
+  const modal = document.getElementById("myModal");
+  if (event.target == modal) {
+    closeModal();
+  }
+};
+
+// Firebase Authentication Logic
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Email/Password Log In
+  document.querySelector('.submit-btn').addEventListener('click', async () => {
+    const email = document.querySelector('.user').value;
+    const password = document.querySelector('.pass').value;
+    const errorMessage = document.querySelector('.error-message');
+    errorMessage.style.display = 'none';
+
+    try {
+      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+      alert("✅ Logged in as " + userCredential.user.email);
+      closeModal();
+    } catch (error) {
+      errorMessage.textContent = "❌ " + error.message;
+      errorMessage.style.display = 'block';
+    }
+  });
+
+  // Google Log In
+  document.querySelector('.google-btn').addEventListener('click', async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      const result = await firebase.auth().signInWithPopup(provider);
+      alert("✅ Google Login successful: " + result.user.email);
+      closeModal();
+    } catch (error) {
+      alert("❌ Google Login Failed: " + error.message);
+    }
+  });
+});
+
+
+
+      function scrollToSymptoms() {
+  const section = document.getElementById("symptomSection");
+  const detail = document.getElementById("diseaseDetailSection");
+  if (detail) detail.classList.add("hidden");
+  if (section) section.scrollIntoView({ behavior: "smooth" });
+}
+
+
+    //  fetch("https://your-backend.cyclic.app/api/hello")
+        //.then((res) => res.json())
+       // .then((data) => {
+         // const p = document.createElement("p");
+         // p.textContent = data.message;
+        //  document.body.appendChild(p);
+      //});
+    </script>
+  </body>
+</html>

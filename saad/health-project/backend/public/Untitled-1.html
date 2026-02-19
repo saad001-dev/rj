@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Location Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .map-container {
+        height: 400px;
+        background-color: #f0f4f8;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        position: relative;
+        margin-top: 1.5rem;
+        display: none;
+      }
+      .location-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
+        color: #3b82f6;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+      .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #3b82f6;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md">
+      <div class="text-center mb-6">
+        <div
+          class="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-blue-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800">Phone Location Tracker</h1>
+        <p class="text-gray-600 mt-2">
+          Enter a phone number to track its location
+        </p>
+      </div>
+
+      <form id="trackerForm" class="space-y-4">
+        <div>
+          <label
+            for="phone"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >Phone Number</label
+          >
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="e.g. +923001234567"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+            required
+            pattern="^\+[0-9]{11,15}$"
+            title="Please enter a valid international phone number starting with +"
+          />
+          <p class="mt-1 text-xs text-gray-500">
+            Format: +CountryCode PhoneNumber (e.g. +923001234567)
+          </p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center space-x-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <span>Track Location</span>
+        </button>
+      </form>
+
+      <div id="trackingProgress" class="mt-6 hidden">
+        <div class="flex flex-col items-center">
+          <p class="text-gray-700 mb-4">Searching for device location...</p>
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+
+      <div id="resultContainer" class="mt-6 hidden">
+        <div class="bg-blue-50 rounded-lg p-4">
+          <div class="flex items-center mb-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-blue-500 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <h3 class="font-medium text-blue-800">Location Found</h3>
+          </div>
+          <p class="text-gray-600 font-medium">
+            Phone Number: <span id="resultPhone" class="font-bold"></span>
+          </p>
+          <p class="text-gray-600 mt-1">
+            Approximate Location:
+            <span id="resultLocation" class="font-semibold"></span>
+          </p>
+        </div>
+
+        <div class="map-container mt-4">
+          <img
+            src="https://placehold.co/800x400"
+            alt="Generic map location view with streets and landmarks centered on target location"
+            class="w-full h-full object-cover"
+          />
+          <div class="location-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("trackerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const phoneNumber = document.getElementById("phone").value;
+          const trackingProgress = document.getElementById("trackingProgress");
+          const resultContainer = document.getElementById("resultContainer");
+
+          // Hide result if previously shown
+          resultContainer.classList.add("hidden");
+          document.querySelector(".map-container").style.display = "none";
+
+          // Show loading spinner
+          trackingProgress.classList.remove("hidden");
+
+          // Simulate tracking for 2 seconds
+          setTimeout(function () {
+            trackingProgress.classList.add("hidden");
+
+            // Set results
+            document.getElementById("resultPhone").textContent = phoneNumber;
+            const randomLocation = getRandomLocation();
+            document.getElementById("resultLocation").textContent =
+              randomLocation.address;
+
+            // Show result
+            resultContainer.classList.remove("hidden");
+            document.querySelector(".map-container").style.display = "block";
+
+            // Disclaimer notification (simulated)
+            setTimeout(function () {
+              alert(
+                "Disclaimer: This is a simulated demonstration. Actual phone tracking requires proper authorization and technical capabilities. This website does not actually track phone locations."
+              );
+            }, 300);
+          }, 2000);
+        });
+
+      function getRandomLocation() {
+        const locations = [
+          {
+            address: "Near Gulberg Greens, Islamabad, Pakistan",
+            coords: { lat: 33.6424, lng: 73.043 },
+          },
+          {
+            address: "DHA Phase 5, Lahore, Pakistan",
+            coords: { lat: 31.4703, lng: 74.421 },
+          },
+          {
+            address: "Clifton Block 4, Karachi, Pakistan",
+            coords: { lat: 24.8209, lng: 67.0331 },
+          },
+          {
+            address: "University Town, Peshawar, Pakistan",
+            coords: { lat: 34.0151, lng: 71.5249 },
+          },
+          {
+            address: "Cantonment Area, Rawalpindi, Pakistan",
+            coords: { lat: 33.6058, lng: 73.0546 },
+          },
+        ];
+
+        return locations[Math.floor(Math.random() * locations.length)];
+      }
+    </script>
+  </body>
+</html>
