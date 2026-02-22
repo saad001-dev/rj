@@ -438,6 +438,59 @@ background:
   }
 }
 
+/* skills bar */
+.section{
+    padding:100px 10%;
+  align-items: center;
+  margin-top: 50px;
+  justify-content: center;
+    background: #0e202e;
+    width: 700px;
+    height: 100%;
+    box-shadow: -8px 9px 15px 6px rgba(0, 0, 0, 0.2),
+    8px 9px 15px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.skill-card{
+    
+   background: #1e293b; 
+    padding:20px;
+    margin-top: 40px;
+    border-radius:12px;
+    margin-bottom:30px;
+}
+
+.skill-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+   color: rgb(25, 227, 227);
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#455162;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    transition: width 2s ease;
+}
+
+/* Different Colors */
+.html{ background:linear-gradient(90deg,#ff0000,#741d02); }
+.css{ background:linear-gradient(90deg,#4000ff,#21037a); }
+.js{ background:linear-gradient(90deg,#7ba8a8,#53646c); }
+.react{ background:linear-gradient(90deg,#44ff00,#3b6f05); }
+
+
+
 @media only screen and (max-width: 700px) {
   .nav-links {
     display: none;
@@ -514,8 +567,8 @@ background:
 /* Each box width responsive */
 .project-card .box {
   flex: 1 1 30%; /* grow, shrink, base width 30% */
-  max-width: 320px; /* desktop max width */
-  min-width: 250px;
+  max-width: 350px; /* desktop max width */
+  min-width: 340px;
   height: 580px;
   /* minimum box width */
   background-color: #1e293b;
@@ -565,7 +618,16 @@ background:
   transition: transform 0.4s ease;
   border-radius: 20px 20px 0px 0px;
 }
+.project-card .box {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
 
+.project-card .box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 .contact {
   color: rgb(144, 138, 177);
   justify-content: center;
@@ -678,7 +740,7 @@ background:
     height: 100%;
   }
   .project-card .box {
-    max-width: 700px;
+    max-width: 500px;
     min-width: 380px;
   }
 }
@@ -784,6 +846,17 @@ background:
   margin-left: -3px;
    z-index: -1;
 }
+.timeline-item{
+  opacity:0;
+  transform:translateY(60px);
+  transition: all 0.8s ease;
+}
+
+/* Visible state */
+.timeline-item.show{
+  opacity:1;
+  transform:translateY(0);
+}
 .left-container-arrow{
   width: 0;
   height: 0;
@@ -839,6 +912,60 @@ margin: 50px auto;
   border-left: 0;
  }
 }
+
+.ecg-container{
+  width:600px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  overflow:hidden;
+  padding-bottom: 30px;
+}
+
+.ecg-svg{
+  width:100%;
+}
+
+/* ECG line */
+.ecg-path{
+  fill:none;
+  stroke:red;
+  stroke-width:3;
+
+  /* Glow effect */
+  filter: drop-shadow(0 0 6px red);
+
+  /* Animation setup */
+  stroke-dasharray:800;
+  stroke-dashoffset:800;
+
+  animation: drawECG 4s linear infinite;
+}
+
+/* Animation */
+@keyframes drawECG{
+
+  0%{
+    stroke-dashoffset:800;
+  }
+
+  100%{
+    stroke-dashoffset:0;
+  }
+
+}
+
+
+.img-my img{
+  width: 300px;
+  position: absolute;
+  left: 74%;
+  transform: translate(-30%,-120%);
+  height: 330px;
+ 
+  background-color: transparent;
+  align-items: center;
+}
   </style>
   <body>
     <div class="navbar">
@@ -864,9 +991,7 @@ margin: 50px auto;
     </div>
 
     <div class="hero">
-      <video autoplay muted loop playsinline id="bg-video">
-        <source src="" type="video/mp4" />
-      </video>
+    <div class="big-container">
       <h1 class="name"><span></span></h1>
 
       <div class="heading">
@@ -881,6 +1006,8 @@ margin: 50px auto;
 
       <div class="btn">
         <i class="fas fa-rocket"></i><a href="#">View My Work</a>
+        </div>
+       <div class="img-my"> <img src="./zz.png" alt="hhhhh"></div>
       </div>
     </div>
 
@@ -950,7 +1077,7 @@ margin: 50px auto;
         </div>
 
         <div class="box">
-          <img src="https://www.fathym.com/img/iothealthcare.png" alt="" />
+          <img src="https://i.ibb.co/Z17JPNHW/Whats-App-Image-2026-02-22-at-11-12-09-PM-removebg-preview.png" alt="" />
           <div class="project-title">
             Health care
             <p class="contact">
@@ -988,6 +1115,68 @@ margin: 50px auto;
             </div>
           </div>
         </div>
+        <div class="box">
+          <img
+            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97a8d8c8-c1d9-42f9-bf09-9583f3dc653e.png"
+            alt="Financial analytics dashboard with charts, graphs, and data visualization"
+            alt=""
+          />
+          <div class="project-title">
+            Financial Dashboard
+            <p class="contact">
+              Interactive financial analytics platform with real-time data and
+              comprehensive reporting features.
+            </p>
+            <div class="tags">
+              <span>Vue.js</span>
+              <span>D3.js</span>
+              <span>Firebase</span>
+            </div>
+            <div class="button">
+              <i class="fas fa-rocket"></i><a href="#">View Project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <img src="https://www.fathym.com/img/iothealthcare.png" alt="" />
+          <div class="project-title">
+            Health care
+            <p class="contact">
+              Intuitive mobile-first social platform with real-time messaging
+              capabilities, extensive media sharing support.
+            </p>
+            <div class="tags">
+              <span>React</span>
+              <span>GraphQL</span>
+              <span>AWS</span>
+            </div>
+            <div class="button">
+              <i class="fas fa-rocket"></i><a href="#">View Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <img
+            src="https://b1622763.smushcdn.com/1622763/wp-content/uploads/2024/11/eCommerce-Platform-Optimization-1024x577.jpg?lossy=1&strip=1&webp=1"
+            alt=""
+          />
+          <div class="project-title">
+            E-Commerce Platform
+            <p class="contact">
+              A modern e-commerce solution with real-time inventory management,
+              payment integration, and responsive design.
+            </p>
+            <div class="tags">
+              <span>Node.js </span>
+              <span>React</span>
+              <span>MongoDB</span>
+            </div>
+            <div class="button">
+              <i class="fas fa-rocket"></i><a href="#">View Project</a>
+            </div>
+          </div>
+        </div>    
       </div>
     </div>
     <div id="experience">
@@ -995,11 +1184,11 @@ margin: 50px auto;
     </div>
 
     <div class="time-line">
-      <div class="container left-container">
+      <div class="container left-container timeline-item">
         <i class="fa-solid fa-code"></i>
         <div class="text-box">
           <h2>Senior Frontend Developer</h2>
-          <small>2024 - Present</small>
+          <small>2025 - Present</small>
           <p>
             Leading frontend development for enterprise applications, mentoring
             junior developers, and implementing modern development practices.
@@ -1007,11 +1196,11 @@ margin: 50px auto;
           <span class="left-container-arrow"> </span>
         </div>
       </div>
-      <div class="container right-container">
+      <div class="container right-container timeline-item ">
         <i class="fa-brands fa-codepen"></i>
         <div class="text-box">
           <h2>Frontend Developer</h2>
-          <small>2022 - 2024</small>
+          <small>2024 - 2025</small>
           <p>
             Developed responsive web applications, collaborated with design
             teams, and optimized performance for client projects.
@@ -1019,33 +1208,119 @@ margin: 50px auto;
           <span class="right-container-arrow"> </span>
         </div>
       </div>
-      <div class="container left-container">
+      <div class="container left-container timeline-item ">
         <i class="fa-solid fa-boxes-packing"></i>
         <div class="text-box">
-          <h2>Junior Developer</h2>
-          <small>2020-2022</small>
+          <h2>Responsive Designer</h2>
+          <small>2023-2024</small>
           <p>
-            Built foundational skills in web development, worked on various
-            projects, and contributed to team success.
+           Designing and developing fully responsive websites, ensuring seamless performance across all devices, and implementing modern web development practices.
           </p>
           <span class="left-container-arrow"> </span>
         </div>
       </div>
-      <div class="container right-container">
+      <div class="container right-container timeline-item ">
         <i class="fa-solid fa-chart-simple"></i>
         <div class="text-box">
-          <h2>Frontend Developer</h2>
-          <small>2024 - Present</small>
+          <h2>Junior Developer</h2>
+          <small>2020-2023</small>
           <p>
-            Leading frontend development for enterprise applications, mentoring
-            junior developers, and implementing modern development practices.
+           Built foundational skills in web development, worked on various
+                projects, and contributed to team success.
           </p>
           <span class="right-container-arrow"> </span>
         </div>
       </div>
     </div>
+   
 
+    <div style=" display:flex; align-items:center; justify-content:center;">
+    
+
+
+<section class="section" id="skills">
+ <div class="ecg-container">
+  <svg viewBox="0 0 800 200" class="ecg-svg">
+    
+    <!-- ECG LINE -->
+    <path class="ecg-path"
+      d="M0 100 
+         L80 100
+         L100 140
+         L120 60
+         L140 100
+         L220 100
+         L240 130
+         L260 70
+         L280 100
+         L360 100
+         L380 150
+         L400 50
+         L420 100
+         L800 100"/>
+         
+  </svg>
+</div>
+    <div class="skill-card">
+        <div class="skill-header">
+            <h3>HTML5</h3>
+            <span>95%</span>
+        </div>
+        <div class="progress">
+            <div class="progress-bar html" data-width="95%"></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <div class="skill-header">
+            <h3>CSS3</h3>
+            <span>92%</span>
+        </div>
+        <div class="progress">
+            <div class="progress-bar css" data-width="92%"></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <div class="skill-header">
+            <h3>JavaScript</h3>
+            <span>90%</span>
+        </div>
+        <div class="progress">
+            <div class="progress-bar js" data-width="90%"></div>
+        </div>
+    </div>
+
+    <div class="skill-card">
+        <div class="skill-header">
+            <h3>React JS</h3>
+            <span>93%</span>
+        </div>
+        <div class="progress">
+            <div class="progress-bar react" data-width="93%"></div>
+        </div>
+    </div>
+
+</section>
+
+
+</div>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat eum numquam, voluptate voluptatibus, sit excepturi error eligendi molestias cupiditate et, hic fugit obcaecati. Totam possimus repellendus corporis necessitatibus nam.
     <script>
+const skillsSection = document.querySelector("#skills");
+const progressBars = document.querySelectorAll(".progress-bar");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            progressBars.forEach(bar => {
+                bar.style.width = bar.getAttribute("data-width");
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+observer.observe(skillsSection);
       
 
  const h1Span = document.querySelector(".name span"); // ✅ use span, not h1
@@ -1119,11 +1394,47 @@ menuBtn.addEventListener("click", function(){
   }
 
 });
+const ittems = document.querySelectorAll(".timeline-item");
 
+const obsserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{
+  threshold:0.3
+});
+
+ittems.forEach(item=>{
+  obsserver.observe(item);
+});
+const projectBoxes = document.querySelectorAll(".project-card .box");
+
+const boxObserver = new IntersectionObserver((entries, observerInstance) => {
+  entries.forEach((entry, idx) => {
+    if(entry.isIntersecting){
+      // staggered animation: 100ms per card
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, idx * 100);
+
+      // stop observing once the box is animated
+      observerInstance.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+// observe each box individually
+projectBoxes.forEach(box => boxObserver.observe(box));
     </script>
   </body>
 
 </html>
+
+
 
 
 
