@@ -74,8 +74,21 @@ body {
   width: 130px;
   padding-left: 0px;
   margin-left: 12px;
-  animation : updown 2s  linear infinite ;
+  animation: updown 2s linear infinite, fireGlow 0.3s infinite alternate;
 
+}
+/* Fire glow animation */
+@keyframes fireGlow {
+  0% {
+    filter: drop-shadow(0 0 5px rgb(55, 0, 255))
+            drop-shadow(0 0 10px rgb(68, 0, 255))
+            drop-shadow(0 0 15px rgb(12, 32, 214));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgb(76, 26, 214))
+            drop-shadow(0 0 20px rgb(19, 9, 161))
+            drop-shadow(0 0 30px rgb(70, 13, 226));
+  }
 }
 @keyframes updown {
 0%{
@@ -125,7 +138,7 @@ transform: translateY(0px);
   display:none;
   font-size:24px;
   cursor:pointer;
-  color: #1852fd;
+  color: rgb(19, 189, 189);
   margin: 30px;
 }
 /* ----------------- Hero Section ----------------- */
@@ -139,7 +152,9 @@ transform: translateY(0px);
   padding-left: 120px; /* Distance from left screen edge */
   text-align: left;
   
-background:url("tech.png");
+background:
+    
+    url("https://i.ibb.co/fVTrXkYZ/tech.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -183,7 +198,9 @@ background:url("tech.png");
   display: inline-block;
   
   white-space: nowrap;
-  color: aqua;
+  background: linear-gradient(90deg, rgb(71, 167, 170), rgb(8, 214, 214) );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: "Poppins", sans-serif;
   animation: fadeUp 2s cubic-bezier(0.2, 0.9, 0.2, 1) both;
   animation-delay: 0.7s;
@@ -196,8 +213,8 @@ background:url("tech.png");
   width: 3px; /* thin vertical line */
   height: 1.2em; /* same height as text */
   margin-left: 4px;
-  
-  background-color: aqua; /* cursor color */
+  background-color: aqua;
+  /* cursor color */
   animation: blink 0.7s infinite;
   vertical-align: text-bottom; /* align with text */
 }
@@ -216,7 +233,7 @@ background:url("tech.png");
 }
 
 .heading {
-  color: rgb(121, 174, 174);
+  color: rgb(30, 136, 136);
   font-weight: 700;
   font-family: "Inter", sans-serif;
   font-size: clamp(1.4rem, 2.9vw, 2.2rem);
@@ -829,10 +846,10 @@ margin: 50px auto;
         <img
           width="110px"
           height="70px"
-          src="rj.png"
+          src="https://i.ibb.co/ZpQjbmSN/rj.png"
           alt="Logo"
         />
-        
+
       </div>
       <div class="nav-links">
         <a href="#home">Home</a>
@@ -1054,10 +1071,10 @@ margin: 50px auto;
             isDeleting = false;
           }
         }
-        setTimeout(typeWriter, isDeleting ? typingSpeed / 2 : typingSpeed);
+        setTimeout(typeWriter, isDeleting ? typingSpeed / 1 : typingSpeed);
       }
 
-      setTimeout(typeWriter, 2700);
+      setTimeout(typeWriter, 3000);
 
       // 0.7s delay + 2s animation
 
@@ -1107,4 +1124,6 @@ menuBtn.addEventListener("click", function(){
   </body>
 
 </html>
+
+
 
