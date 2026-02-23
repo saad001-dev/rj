@@ -945,7 +945,7 @@
       }
     }
 
-    .img-my img {
+  .img-my img {
       width: 350px;
       position: absolute;
       left: 74%;
@@ -1380,24 +1380,27 @@ border-radius: 50%;
         navLinks.style.display = "flex";
       }
     });
-    const ittems = document.querySelectorAll(".timeline-item");
+   const timelineSection = document.querySelector(".time-line");
 
-    const obsserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-      },
-    );
+if (timelineSection) {
 
-    ittems.forEach((item) => {
-      obsserver.observe(item);
-    });
+  const timelineObserver = new IntersectionObserver((entries) => {
+
+    if (entries[0].isIntersecting) {
+
+      const timelineItems = document.querySelectorAll(".timeline-item");
+
+      timelineItems.forEach(item => {
+        item.classList.add("show");
+      });
+
+    }
+
+  }, { threshold: 0.2 });
+
+  timelineObserver.observe(timelineSection);
+
+}
     const projectBoxes = document.querySelectorAll(".project-card .box");
 
     const boxObserver = new IntersectionObserver(
@@ -1423,3 +1426,4 @@ border-radius: 50%;
     projectBoxes.forEach((box) => boxObserver.observe(box));
   </script>
 </html>
+
