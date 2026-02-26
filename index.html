@@ -35,8 +35,16 @@
       scroll-behavior: smooth;
       width: 100%;
       height: 100%;
+      
       font-family: "Inter", sans-serif;
+     
       background-color: #0f172a; /* fallback color */
+    }
+    @keyframes oc {
+      0%{
+
+      }
+      
     }
 
     .nav {
@@ -179,7 +187,7 @@
         transform: translateY(0);
       }
     }
-    .name span {
+    .name {
       font-size: clamp(3rem, 7vw, 8rem);
       display: inline-block;
 
@@ -188,47 +196,56 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-family: "Poppins", sans-serif;
-      animation: fadeUp 2s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-      animation-delay: 0.7s;
+      animation: fadeUp 2s ease-in-out both;
+      animation-delay: 0.9s;
     }
 
     /* Blinking cursor - thin version */
-    .name span::after {
+    .heading span::after {
       content: "";
       display: inline-block; /* important for width/height */
-      width: 3px; /* thin vertical line */
+      width: 3px; /* thin vertical line  */
       height: 1.2em; /* same height as text */
       margin-left: 4px;
       background-color: aqua;
       /* cursor color */
-      animation: blink 0.7s infinite;
+      animation: blink 0.3s infinite;
       vertical-align: text-bottom; /* align with text */
     }
 
     /* Blink animation */
     @keyframes blink {
       0%,
-      50%,
+      
       100% {
         opacity: 1;
       }
-      25%,
+      
       75% {
         opacity: 0;
       }
     }
 
-    .heading {
+    .heading span  {
       color: rgb(30, 136, 136);
       font-weight: 700;
       font-family: "Inter", sans-serif;
-      font-size: clamp(1.4rem, 2.9vw, 2.2rem);
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
 
       margin-top: 25px;
-      animation: fadeUp 2.5s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-      animation-delay: 1s;
+     animation: fadeUp 2s ease-in-out both;
+      animation-delay: 1.2s;
     }
+.heading h6 {
+      color: rgb(30, 136, 136);
+      font-weight: 700;
+      font-family: "Inter", sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.3rem);
 
+      margin-top: 25px;
+     animation: fadeUp 2s ease-in-out both;
+      animation-delay: 1.2s;
+    }
     .para {
       max-width: 480px;
       color: whitesmoke;
@@ -238,8 +255,8 @@
       font-family: "Inter", sans-serif;
       line-height: 1.6;
       margin-top: 28px;
-      animation: fadeUp 2.5s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-      animation-delay: 1.3s;
+     animation: fadeUp 2s ease-in-out both;
+      animation-delay: 1.4s;
     }
 
     .btn {
@@ -259,8 +276,8 @@
       justify-content: center;
       gap: 8px;
 
-      animation: btnIn 2.5s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-      animation-delay: 1.5s;
+     animation: fadeUp 2s ease-in-out both;
+      animation-delay: 1.6s;
 
       transition: all 0.3s ease; /* smooth scaling */
     }
@@ -287,8 +304,15 @@
     .section-about {
       display: flex;
       justify-content: space-between;
+       opacity: 0;
+  transform: translateY(80px);
       margin-top: 100px;
+ transition: all 1s cubic-bezier(0.2, 0.9, 0.2, 1);     
     }
+    .section-about.show{
+  opacity: 1;
+  transform: translateY(0);
+}
     #about {
       color: whitesmoke;
       font-size: clamp(1.8rem, 4vw, 2.6rem);
@@ -322,6 +346,9 @@
       color: aliceblue;
       margin-left: 80px;
       font-size: 1.2rem;
+       opacity:0;
+  transform: translateY(40px);
+  transition: all 1s ease;
       margin-top: 100px;
       padding-right: 20px;
       display: inline-block;
@@ -335,7 +362,15 @@
       margin-right: 60px;
       margin-bottom: 100px;
       text-align: center;
+       opacity:0;
+  transform: translateY(40px);
+  transition: all 1s ease;
     }
+    .left-side.show,
+.right-side-box.show{
+  opacity:1;  
+  transform: translateY(0);
+}
     @keyframes slideUp {
       from {
         opacity: 0;
@@ -510,7 +545,7 @@
         margin-left: 0px;
         padding-left: 5px;
       }
-      .name span {
+      .name {
         margin-top: -50px;
       }
       .heading {
@@ -971,23 +1006,23 @@
 
 .right-hand{
   margin-right: 95px;
+  
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
 .img-my img{
-  width: clamp(300px, 26vw, 400px);
-  aspect-ratio: 1 / 1;
+  width: clamp(300px, 30vw, 650px);
+  margin-top: 60px;
+  height: 570px;
+
+   display: block;
   
-  border-radius: 50%;
-  display: block;
-  
-  border: 3px solid cyan;
-  
-  box-shadow:
-    0 0 15px rgba(0,255,255,0.5),
-    0 0 40px rgba(0,255,255,0.3);
+ 
+        
+       animation: fadeUp 2s ease-in-out both;
+      animation-delay: 0.7s;
 }
 
 @media only screen and  (max-width: 900px){
@@ -1013,8 +1048,43 @@
  
 
 }
+.curtain{
+  position: fixed;
+  top:0;
+  width:50%;
+  height:100vh;
+  background:#06282b;
+  z-index:9999;
+}
+/* Left curtain */
+.curtain-left{
+  left: 1px;;
+  animation: openLeft 2s ease forwards;
+}
+
+/* Right curtain */
+.curtain-right{
+  right: 1px;;
+  animation: openRight 2s ease forwards;
+}
+
+/* Animations */
+@keyframes openLeft{
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes openRight{
+  to{
+    transform: translateX(100%);
+  }
+}
   </style>
   <body>
+    <!-- Curtains -->
+<div class="curtain curtain-left"></div>
+<div class="curtain curtain-right"></div>
     <div class="navbar">
       <div class="logo">
         <img
@@ -1038,11 +1108,11 @@
 
     <div class="hero">
       <div class="big-container">
-       <div class="left-hand"> <h1 class="name"><span></span></h1>
+       <div class="left-hand"> <h1 class="name">RJ SAAD</h1>
 
         <div class="heading">
-          Frontend Developer & <br />
-          UI/UX Specialist
+         <span>  </span>  
+         <h6> & UI/UX Specialist</h6> 
         </div>
         <div class="para">
           Crafting exceptional digital experiences with modern technologies.
@@ -1057,7 +1127,7 @@
 
         <div class="right-hand">
           
-        <div class="img-my"><img src="zz.png" alt="image" /></div>
+        <div class="img-my"><img src="mu.png" alt="image" /></div>
         </div>
       </div>
     </div>
@@ -1171,20 +1241,19 @@
         </div>
         <div class="box">
           <img
-            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97a8d8c8-c1d9-42f9-bf09-9583f3dc653e.png"
+            src="https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Financial analytics dashboard with charts, graphs, and data visualization"
-            alt=""
+            
           />
           <div class="project-title">
-            Financial Dashboard
+            weather app
             <p class="contact">
-              Interactive financial analytics platform with real-time data and
-              comprehensive reporting features.
+             Real-time weather updates with interactive forecasts and dynamic visuals for accurate planning
             </p>
             <div class="tags">
-              <span>Vue.js</span>
-              <span>D3.js</span>
-              <span>Firebase</span>
+              <span>html</span>
+              <span>css</span>
+              <span>JavaScript</span>
             </div>
             <div class="button">
               <i class="fas fa-rocket"></i><a href="#">View Project</a>
@@ -1193,12 +1262,11 @@
         </div>
 
         <div class="box">
-          <img src="https://www.fathym.com/img/iothealthcare.png" alt="" />
+          <img src="https://framerusercontent.com/images/Tgt3X2yURUbBPHkpKanaZBugSoA.jpg?width=1344&height=768" alt="" />
           <div class="project-title">
-            Health care
+            Fitness Tracker
             <p class="contact">
-              Intuitive mobile-first social platform with real-time messaging
-              capabilities, extensive media sharing support.
+              Monitor your daily workouts, calories, and activity levels. Set personal goals and track progress with intuitive charts
             </p>
             <div class="tags">
               <span>React</span>
@@ -1212,14 +1280,13 @@
         </div>
         <div class="box">
           <img
-            src="https://b1622763.smushcdn.com/1622763/wp-content/uploads/2024/11/eCommerce-Platform-Optimization-1024x577.jpg?lossy=1&strip=1&webp=1"
+            src="https://i.ibb.co/CKq8ht9W/Screenshot-2026-02-25-224122.png"
             alt=""
           />
           <div class="project-title">
-            E-Commerce Platform
+           Portfolio Designer
             <p class="contact">
-              A modern e-commerce solution with real-time inventory management,
-              payment integration, and responsive design.
+             Create and showcase stunning personal portfolios with interactive layouts and modern design elements
             </p>
             <div class="tags">
               <span>Node.js </span>
@@ -1354,12 +1421,30 @@
         </div>
       </section>
     </div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat eum
-    numquam, voluptate voluptatibus, sit excepturi error eligendi molestias
-    cupiditate et, hic fugit obcaecati. Totam possimus repellendus corporis
-    necessitatibus nam.
+    
   </body>
   <script>
+
+
+
+const aboutSection = document.querySelector(".section-about");
+const leftSide = document.querySelector(".left-side");
+const rightSide = document.querySelector(".right-side-box");
+
+const obs = new IntersectionObserver((entries) => {
+
+  if(entries[0].isIntersecting){
+
+    aboutSection.classList.add("show");
+    leftSide.classList.add("show");
+    rightSide.classList.add("show");
+
+  }
+
+}, { threshold: 0.5 });
+
+obs.observe(aboutSection);
+
     const skillsSection = document.querySelector("#skills");
     const progressBars = document.querySelectorAll(".progress-bar");
 
@@ -1378,11 +1463,11 @@
 
     observer.observe(skillsSection);
 
-    const h1Span = document.querySelector(".name span"); // ✅ use span, not h1
-    const text = "RJ SAAD";
+    const h1Span = document.querySelector(".heading span"); // ✅ use span, not h1
+    const text = "Frontend Developer";
     let index = 0;
     let isDeleting = false;
-    const typingSpeed = 150;
+    const typingSpeed = 100;
     const pauseTime = 2000;
 
     function typeWriter() {
@@ -1404,7 +1489,7 @@
       setTimeout(typeWriter, isDeleting ? typingSpeed / 1 : typingSpeed);
     }
 
-    setTimeout(typeWriter, 3000);
+    setTimeout(typeWriter, 1000);
 
     // 0.7s delay + 2s animation
 
